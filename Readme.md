@@ -44,21 +44,21 @@ Have you created a YouTube tutorial or TikTok? Let us know in [Discord](https://
 <a href="https://www.youtube.com/watch?v=cYANUINPako">
   <img src="./docs/assets/tutorials/garett_the_gamer.jpg" alt="How to Make a Gorilla Tag Fan Game in 5 Minutes 👍" width="50%" />
   <br>
-  How to Make a Gorilla Tag Fan Game in 5 Minutes 👍
+  Garett_The_Gamer: How to Make a Gorilla Tag Fan Game in 5 Minutes 👍 
 </a>
 
-
+<br><br>
 
 <a href="https://www.youtube.com/watch?v=EOj-AsA8gKc">
   <img src="./docs/assets/tutorials/beob.jpg" alt="YOU Can Make a Gorilla Tag Fangame In Less Than 5 Minutes!" width="50%" />
   <br>
-  YOU Can Make a Gorilla Tag Fangame In Less Than 5 Minutes!
+  beob: YOU Can Make a Gorilla Tag Fangame In Less Than 5 Minutes!
 </a>
 
-
+<br><br>
 
 <a href="https://www.youtube.com/watch?v=IpqoXa4_sME">
   <img src="./docs/assets/tutorials/snow_gt.jpg" alt="How to add cosmetics to your GorillaTemplate with playfab!" width="50%" />
   <br>
-  How to add cosmetics to your GorillaTemplate with playfab!
+  SnowGT: How to add cosmetics to your GorillaTemplate with playfab!
 </a>
