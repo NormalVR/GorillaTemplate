@@ -160,6 +160,8 @@ namespace Normal.GorillaTemplate {
         [SerializeField]
         private InputActionProperty _handAngularVelocityAction;
 
+        private int _stickyGrabReleaseCounter;
+
         protected virtual void Awake() {
             isRightHand = this == _grabber.rightHand;
 
@@ -265,6 +267,12 @@ namespace Normal.GorillaTemplate {
                 return;
             }
 
+            // Skip the first release action when the object is sticky
+            _stickyGrabReleaseCounter++;
+            if (_grabbedObject.useStickyGrab && _stickyGrabReleaseCounter < 2) {
+                return;
+            }
+
             Release(_grabbedObject);
         }
 
@@ -273,6 +281,8 @@ namespace Normal.GorillaTemplate {
                 Debug.LogError($"Only the owner can invoke the {nameof(GrabberHand)}.{nameof(Grab)} method.");
                 return;
             }
+
+            _stickyGrabReleaseCounter = 0;
 
             // Synchronize the grab over the network
             model.grabbedObjectNetworkID = grabbableObject.networkID;
@@ -381,6 +391,15 @@ namespace Normal.GorillaTemplate {
                 grabManager.TryGetGrabbableObject(model.grabbedObjectNetworkID, out syncedObject);
             }
 
+            if (syncedObject != null) {
+                if (syncedObject.ownerIDInHierarchy != ownerIDInHierarchy) {
+                    // This hand has grabbed the object on the client's screen and sent a request to the server,
+                    // but another client's request reached the server first.
+                    // Consider this client empty-handed.
+                    syncedObject = null;
+                }
+            }
+
             var previouslyGrabbedObject = _grabbedObject;
             var hasChanged = syncedObject != previouslyGrabbedObject;
             if (hasChanged == false) {
@@ -396,6 +415,15 @@ namespace Normal.GorillaTemplate {
 
             // Grab the new object
             if (syncedObject != null) {
+                // Although previousHand would be able to release the object when it runs its own SyncGrabbableObject,
+                // we do it here right away to ensure consistency (we always want to release before grabbing).
+                var previousHand = syncedObject.grabberHand;
+                if (previousHand != null) {
+                    previousHand._grabbedObject = null;
+                    syncedObject._ReleaseNetworkedInternal();
+                    previousHand.onRelease?.Invoke(syncedObject);
+                }
+
                 _grabbedObject = syncedObject;
                 syncedObject._GrabNetworkedInternal(this);
                 onGrab?.Invoke(syncedObject);

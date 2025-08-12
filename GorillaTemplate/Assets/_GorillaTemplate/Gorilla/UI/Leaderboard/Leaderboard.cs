@@ -24,8 +24,6 @@ namespace Normal.GorillaTemplate.UI.Leaderboard {
 
         private readonly Dictionary<GorillaAvatar, LeaderboardEntry> _entries = new Dictionary<GorillaAvatar, LeaderboardEntry>();
 
-        private bool _hasLocalPlayer;
-
         private void Start() {
             _gorillaPlayerManager.playerJoined += OnPlayerJoined;
             _gorillaPlayerManager.playerLeft += OnPlayerLeft;
@@ -37,15 +35,6 @@ namespace Normal.GorillaTemplate.UI.Leaderboard {
         }
 
         private void OnPlayerJoined(GorillaAvatar avatar, bool isLocalPlayer) {
-            // Re-use the entry for the local player entry (for seamless room transitions)
-            if (isLocalPlayer) {
-                if (_hasLocalPlayer) {
-                    return;
-                } else {
-                    _hasLocalPlayer = true;
-                }
-            }
-
             // Create an entry and add it to the dictionary
             var entry = Instantiate(_entryPrefab, _entryContainer.transform);
             entry.Initialize(avatar, isLocalPlayer);
@@ -53,11 +42,6 @@ namespace Normal.GorillaTemplate.UI.Leaderboard {
         }
 
         private void OnPlayerLeft(GorillaAvatar avatar, bool isLocalPlayer) {
-            // Don't destroy the local player entry (for seamless room transitions)
-            if (isLocalPlayer) {
-                return;
-            }
-
             // Remove from dictionary and destroy the entry GameObject
             if (_entries.Remove(avatar, out var entry)) {
                 Destroy(entry.gameObject);

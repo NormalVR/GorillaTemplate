@@ -10,11 +10,11 @@ using Random = UnityEngine.Random;
 namespace Normal.GorillaTemplate.Infection {
     /// <summary>
     /// Runs logic for the infection game mode.
-    /// This is a singleton as well as an <see cref="IAutoDistributedOwnership"/>, meaning it always
-    /// has an owner.
+    /// This is a singleton and uses <see cref="AutoDistributeViewOwnership"/>, meaning it always has an owner.
     /// Ownership transfer is seamless because all of its state is contained in the datastore.
     /// </summary>
-    public class InfectionGameMode : RealtimeSingleton<InfectionGameMode, InfectionGameModeModel>, IAutoDistributedOwnership {
+    [RequireComponent(typeof(AutoDistributeViewOwnership))]
+    public class InfectionGameMode : RealtimeSingleton<InfectionGameMode, InfectionGameModeModel> {
         public enum State {
             /// <summary>
             /// Waiting for more players to join before starting the game.
@@ -33,9 +33,6 @@ namespace Normal.GorillaTemplate.Infection {
         }
 
         public State? CurrentState => model?.state;
-
-        // From IAutoDistributedOwnership
-        public bool isOwnerConfirmed { get; set; }
 
         [SerializeField]
         private Realtime.Realtime _realtime;
@@ -63,7 +60,12 @@ namespace Normal.GorillaTemplate.Infection {
         [SerializeField]
         private bool _debugLog;
 
+        private AutoDistributeViewOwnership _autoDistributeOwnership;
+        private bool isOwnerConfirmed => _autoDistributeOwnership.isLocallyOwnedConfirmed;
+
         private void Start() {
+            _autoDistributeOwnership = GetComponent<AutoDistributeViewOwnership>();
+
             _gorillaPlayerManager.playerJoined += OnPlayerJoined;
             _gorillaPlayerManager.playerLeft += OnPlayerLeft;
         }

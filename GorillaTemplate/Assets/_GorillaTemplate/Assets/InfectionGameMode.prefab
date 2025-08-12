@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7189682948585264366}
   - component: {fileID: 5551629673927632292}
   - component: {fileID: 4344890289317536052}
-  - component: {fileID: 4396173773163978368}
+  - component: {fileID: 1464092497535420919}
   m_Layer: 0
   m_Name: InfectionGameMode
   m_TagString: Untagged
@@ -76,7 +76,7 @@ MonoBehaviour:
   _minNumberOfPlayersToStartTag: 2
   _minNumberOfPlayersToStartInfection: 4
   _debugLog: 0
---- !u!114 &4396173773163978368
+--- !u!114 &1464092497535420919
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,7 +85,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 9085956174727713909}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02bea9c50ef243c69fc8335ef8066048, type: 3}
+  m_Script: {fileID: 11500000, guid: 2799494b1fab44469b15e79ca124c501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _target: {fileID: 4344890289317536052}

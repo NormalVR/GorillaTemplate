@@ -335,6 +335,7 @@ MonoBehaviour:
   _grabAnchor: {fileID: 0}
   _maxLinearVelocityMultiplier: 1
   _maxAngularVelocityMultiplier: 1
+  _useStickyGrab: 0
 --- !u!114 &6279499791062684328
 MonoBehaviour:
   m_ObjectHideFlags: 0

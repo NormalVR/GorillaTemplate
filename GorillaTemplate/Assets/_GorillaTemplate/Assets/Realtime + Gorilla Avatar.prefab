@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6693574861097370393}
   - component: {fileID: 9127752703490469373}
   - component: {fileID: 2158251924802783094}
+  - component: {fileID: 1938413975175755209}
   m_Layer: 0
   m_Name: Realtime + Gorilla Avatar
   m_TagString: Untagged
@@ -141,3 +142,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c28276fcecb34295b394c5a16799b270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1938413975175755209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3117176247639341373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09b538c51be347798ff9aeda7bc95c00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sceneNameForBannedUsers: Playfab Banned

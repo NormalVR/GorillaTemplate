@@ -38,6 +38,12 @@ namespace Normal.GorillaTemplate {
         private float _maxAngularVelocityMultiplier = 1f;
 
         /// <summary>
+        /// When true, this object is released when the hand's release action is performed a second time.
+        /// </summary>
+        [SerializeField]
+        private bool _useStickyGrab;
+
+        /// <summary>
         /// The <see cref="Rigidbody"/> of this object, if any.
         /// </summary>
         public Rigidbody physicsBody => _rigidbody;
@@ -47,6 +53,12 @@ namespace Normal.GorillaTemplate {
 
         /// <inheritdoc cref="_maxAngularVelocityMultiplier"/>
         public float maxAngularVelocityMultiplier => _maxAngularVelocityMultiplier;
+
+        /// <inheritdoc cref="_useStickyGrab"/>
+        public bool useStickyGrab {
+            get => _useStickyGrab;
+            set => _useStickyGrab = value;
+        }
 
         private RealtimeTransform _realtimeTransform;
 
@@ -251,6 +263,12 @@ namespace Normal.GorillaTemplate {
         }
 
         public void _GrabInternal(GrabberHand hand) {
+            // Request exclusive ownership over this object:
+            // If two clients grab the object at the same time, only one will be granted ownership.
+            // The losing client will perform a correction in GrabberHand.SyncGrabbableObject().
+            realtimeView.RequestOwnership();
+            realtimeView.preventOwnershipTakeover = true;
+
             // To move a RealtimeTransform we first need to take ownership
             _realtimeTransform.RequestOwnership();
 
@@ -274,6 +292,13 @@ namespace Normal.GorillaTemplate {
         }
 
         public void _ReleaseInternal(Vector3 linearVelocity, Vector3 angularVelocity, Vector3 handTrackingPosition, ThrowSettings throwSettings) {
+            // Release ownership over this object.
+            // No need to clear preventOwnershipTakeover, as unowned models will allow ownership to go through regardless.
+            realtimeView.ClearOwnership();
+
+            // We also don't clear ownership on the RealtimeTransform, because we need to keep simulating it after the release/throw.
+            // But its ownership isn't exclusive, so other clients can still catch/grab the object mid-flight.
+
             if (_rigidbody != null) {
                 var throwVelocities = throwSettings.ModifyHandVelocitiesForThrow(this, new ThrowSettings.Velocities() {
                     linearVelocity = linearVelocity,
@@ -382,7 +407,7 @@ namespace Normal.GorillaTemplate {
     /// <summary>
     /// The <see cref="GrabbableObject"/> data that is synchronized over the network.
     /// </summary>
-    [RealtimeModel]
+    [RealtimeModel(true)]
     public partial class GrabbableObjectModel {
         /// <summary>
         /// A property that synchronizes <see cref="GrabbableObject.networkID"/>.

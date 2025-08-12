@@ -16,6 +16,9 @@ namespace Normal.Utility {
 
     /// <summary>
     /// <para>
+    /// Note: <see cref="AutoDistributeViewOwnership"/> is a simpler and better version of this component.
+    /// </para>
+    /// <para>
     /// This is a script that can accompany any <see cref="RealtimeComponent{TModel}"/>
     /// and ensure that it always has an owner.
     /// An initial owner is chosen randomly and ownership is distributed randomly
@@ -82,6 +85,11 @@ namespace Normal.Utility {
         /// </summary>
         private void TryClaimOwnership() {
             _component.realtimeView.RequestOwnership();
+
+            // If multiple clients are currently racing to request ownership,
+            // this tells the server to grant ownership to the first request that arrives and discard the rest
+            _component.realtimeView.preventOwnershipTakeover = true;
+
             _component.RequestOwnership();
 
             Invoke(nameof(ConfirmOwnership), 1f);

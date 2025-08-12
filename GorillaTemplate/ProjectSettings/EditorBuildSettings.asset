@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_GorillaTemplate/_DemoScenes/Demo (Multiplayer).unity
     guid: 10bff204df03b3a4aa5b5da6a6f9b770
+  - enabled: 1
+    path: Assets/_GorillaTemplate/_DemoScenes/Playfab Banned.unity
+    guid: a374a8c0f20e228428138e75a789284f
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: a1c5c0da903480744ab1b7b38376f126, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: d30355ffd2a462f48963c08101163154, type: 3}
