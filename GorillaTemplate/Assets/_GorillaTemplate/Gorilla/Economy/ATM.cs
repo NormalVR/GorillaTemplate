@@ -1,8 +1,14 @@
-﻿using Normal.GorillaTemplate.Keyboard;
+﻿using System;
+using System.Threading.Tasks;
+using Normal.GorillaTemplate.Keyboard;
 using TMPro;
 using UnityEngine;
 
 namespace Normal.GorillaTemplate {
+    /// <summary>
+    /// Implements a station where the user can purchase virtual currency using
+    /// <see cref="MetaHorizonStoreManager"/> and <see cref="PlayFabManager"/>.
+    /// </summary>
     public class ATM : Keyboard.Keyboard {
         [SerializeField]
         [Tooltip("The SKU to purchase from the Meta Horizon Store.")]
@@ -22,6 +28,8 @@ namespace Normal.GorillaTemplate {
         private TMP_Text _nameText;
         [SerializeField]
         private TMP_Text _priceText;
+        [SerializeField]
+        private AudioSource _purchaseSFX;
 
         private async void Start() {
             // Load the user's account balance from PlayFab
@@ -56,9 +64,21 @@ namespace Normal.GorillaTemplate {
             base.NotifyButtonPressed(data);
 
             if (data.Type == KeyboardButtonType.Enter) {
-                _ = MetaHorizonStoreManager.PurchaseAsync(_metaSKU, async purchase => {
+                _ = PurchaseAsync();
+            }
+        }
+
+        private async Task PurchaseAsync() {
+            try {
+                var success = await MetaHorizonStoreManager.PurchaseAsync(_metaSKU, async purchase => {
                     return await PlayFabManager.AddCurrencyAsync(_virtualCurrencyCode, _virtualCurrencyAmount);
                 });
+
+                if (success && _purchaseSFX != null) {
+                    _purchaseSFX.Play();
+                }
+            } catch (Exception ex) {
+                Debug.LogError($"PurchaseAsync failed: {ex}");
             }
         }
     }

@@ -1,0 +1,3 @@
+FreeSteps: https://dryoma.itch.io/footsteps-sounds
+kenney_interface-sounds: https://kenney.nl/assets/interface-sounds
+unicae_games_keyboard_soundpack_1: https://opengameart.org/content/keyboard-soundpack-1-typing-and-single-keystrokes

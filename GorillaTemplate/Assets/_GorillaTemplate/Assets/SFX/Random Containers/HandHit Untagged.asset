@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1233149941 &-5359680172303105640
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Steps_tiles-011_{-5359680172303105640}
+  m_AudioClip: {fileID: 8300000, guid: f6b234d94cb07254a9e2a67761f4a61a, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-5266243541179991302
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Steps_tiles-015_{-5266243541179991302}
+  m_AudioClip: {fileID: 8300000, guid: 6bcbfa4b1a8830c4cb05a57ff2ae51b0, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-134885013621538011
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Steps_tiles-009_{-134885013621538011}
+  m_AudioClip: {fileID: 8300000, guid: 8eba1d29d9614d0498bb0117dc350a65, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &557434464443346589
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Steps_tiles-007_{557434464443346589}
+  m_AudioClip: {fileID: 8300000, guid: 7934c5f58e7822748a73c1414d246e6f, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &3598455530862642498
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Steps_tiles-016_{3598455530862642498}
+  m_AudioClip: {fileID: 8300000, guid: afc6e78c0b7a75047b5b270ddc41c378, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &3957158311455808107
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Steps_tiles-006_{3957158311455808107}
+  m_AudioClip: {fileID: 8300000, guid: 1f951d5919d8abc4297852be58670e3e, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &4546606967603897344
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Steps_tiles-019_{4546606967603897344}
+  m_AudioClip: {fileID: 8300000, guid: 8a2b2587891bc0247a29001a89ad2211, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1307931743 &6418180475301049370
+AudioRandomContainer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: HandHit Untagged
+  m_Volume: -9.9
+  m_Pitch: 0
+  m_AutomaticTriggerTime: 0
+  m_LoopCount: 1
+  m_VolumeRandomizationRange: {x: -2, y: 2}
+  m_PitchRandomizationRange: {x: -200, y: 200}
+  m_AutomaticTriggerTimeRandomizationRange: {x: 0, y: 0}
+  m_LoopCountRandomizationRange: {x: 0, y: 0}
+  m_Elements:
+  - {fileID: 3957158311455808107}
+  - {fileID: 557434464443346589}
+  - {fileID: -134885013621538011}
+  - {fileID: -5359680172303105640}
+  - {fileID: 7328776444900648240}
+  - {fileID: -5266243541179991302}
+  - {fileID: 3598455530862642498}
+  - {fileID: 4546606967603897344}
+  m_AvoidRepeatingLast: 2
+  m_PlaybackMode: 2
+  m_TriggerMode: 0
+  m_AutomaticTriggerMode: 1
+  m_LoopMode: 2
+  m_VolumeRandomizationEnabled: 1
+  m_PitchRandomizationEnabled: 1
+  m_AutomaticTriggerTimeRandomizationEnabled: 0
+  m_LoopCountRandomizationEnabled: 0
+--- !u!1233149941 &7328776444900648240
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Steps_tiles-013_{7328776444900648240}
+  m_AudioClip: {fileID: 8300000, guid: fd780e9eea107cf45b8d287b4f1a151a, type: 3}
+  m_Volume: 0
+  m_Enabled: 1

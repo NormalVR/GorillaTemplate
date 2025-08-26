@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1233149941 &-2984926504397213538
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Steps_wood-008_{-2984926504397213538}
+  m_AudioClip: {fileID: 8300000, guid: df5cdf0b9a617054fad6c8c28429c807, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-134885013621538011
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Steps_wood-005_{-134885013621538011}
+  m_AudioClip: {fileID: 8300000, guid: c4345681cf7964045a3746a9853c3f8d, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &2678884310108111114
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Steps_wood-011_{2678884310108111114}
+  m_AudioClip: {fileID: 8300000, guid: 45bc0af7d5d844747b5aef71c08cd195, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1307931743 &6418180475301049370
+AudioRandomContainer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: HandHit Wood Surface
+  m_Volume: -2
+  m_Pitch: 0
+  m_AutomaticTriggerTime: 0
+  m_LoopCount: 1
+  m_VolumeRandomizationRange: {x: -2, y: 2}
+  m_PitchRandomizationRange: {x: 0, y: 198.42555}
+  m_AutomaticTriggerTimeRandomizationRange: {x: 0, y: 0}
+  m_LoopCountRandomizationRange: {x: 0, y: 0}
+  m_Elements:
+  - {fileID: -134885013621538011}
+  - {fileID: -2984926504397213538}
+  - {fileID: 2678884310108111114}
+  - {fileID: 6542557945549322956}
+  m_AvoidRepeatingLast: 0
+  m_PlaybackMode: 2
+  m_TriggerMode: 0
+  m_AutomaticTriggerMode: 1
+  m_LoopMode: 2
+  m_VolumeRandomizationEnabled: 1
+  m_PitchRandomizationEnabled: 1
+  m_AutomaticTriggerTimeRandomizationEnabled: 0
+  m_LoopCountRandomizationEnabled: 0
+--- !u!1233149941 &6542557945549322956
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Steps_wood-020_{6542557945549322956}
+  m_AudioClip: {fileID: 8300000, guid: 04b2eeecca2351b4b8282563fb0a9404, type: 3}
+  m_Volume: 0
+  m_Enabled: 1

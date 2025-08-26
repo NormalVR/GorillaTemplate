@@ -34,6 +34,9 @@ namespace Normal.GorillaTemplate.Wardrobe {
         [SerializeField]
         private ButtonBase _equipButton;
 
+        [SerializeField]
+        private AudioSource _purchaseSFX;
+
         /// <summary>
         /// The local avatar's cosmetics manager instance.
         /// </summary>
@@ -260,6 +263,10 @@ namespace Normal.GorillaTemplate.Wardrobe {
                     if (await PlayFabManager.PurchaseItemAsync(itemToEquip.catalog, itemToEquip.itemId, _virtualCurrencyCode)) {
                         // Clear the price text if the item was purchased successfully
                         DisplayPrice(0);
+
+                        if (_purchaseSFX != null) {
+                            _purchaseSFX.Play();
+                        }
                     } else {
                         // If the purchase failed, do not equip the item
                         return;

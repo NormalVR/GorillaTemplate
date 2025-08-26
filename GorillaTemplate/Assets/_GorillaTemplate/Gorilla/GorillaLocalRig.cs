@@ -22,6 +22,15 @@ namespace Normal.GorillaTemplate {
         /// </summary>
         public Transform playerRootTransform => _player.transform;
 
+        /// <inheritdoc cref="handHitProvider"/>
+        [SerializeField]
+        private HandHitProvider _handHitProvider;
+
+        /// <summary>
+        /// Provides events for player hand collisions.
+        /// </summary>
+        public HandHitProvider handHitProvider => _handHitProvider;
+
         /// <summary>
         /// The component that controls player turning.
         /// </summary>

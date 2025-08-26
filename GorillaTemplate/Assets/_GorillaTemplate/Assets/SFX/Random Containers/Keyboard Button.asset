@@ -1,0 +1,203 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1233149941 &-7782742151933332030
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: keypress-022_{-7782742151933332030}
+  m_AudioClip: {fileID: 8300000, guid: b6fc4ec82eafe6f40bae98de4b4e5e2e, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-6013896956145240059
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: keypress-030_{-6013896956145240059}
+  m_AudioClip: {fileID: 8300000, guid: 80f7e3800e6963540aa05769f8293c94, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-5359680172303105640
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: keypress-008_{-5359680172303105640}
+  m_AudioClip: {fileID: 8300000, guid: 9b4d5813bada58f4ba2494293845cc11, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-5266243541179991302
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: keypress-012_{-5266243541179991302}
+  m_AudioClip: {fileID: 8300000, guid: d713b5f6e3c19744bad0a0706a08ec4e, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-4988913873422121321
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: keypress-018_{-4988913873422121321}
+  m_AudioClip: {fileID: 8300000, guid: cd3e73deb23d38341bee34c4d32d5b22, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-2922128379159031940
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: keypress-032_{-2922128379159031940}
+  m_AudioClip: {fileID: 8300000, guid: baa552e758548614aa1e7f21e30d3131, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-2578797896020300283
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: keypress-020_{-2578797896020300283}
+  m_AudioClip: {fileID: 8300000, guid: 9581667b0b4bf7e44b410370f2e5147d, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-134885013621538011
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: keypress-006_{-134885013621538011}
+  m_AudioClip: {fileID: 8300000, guid: 871b880415635074c9ea3e5d44aa4f69, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-31164358155791711
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: keypress-024_{-31164358155791711}
+  m_AudioClip: {fileID: 8300000, guid: 69274b3e7956c4d40803d82a31f00725, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &557434464443346589
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: keypress-004_{557434464443346589}
+  m_AudioClip: {fileID: 8300000, guid: 47a2203a1fcd34d44b6ee4f07f8ad8b8, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &2943255329534289993
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: keypress-028_{2943255329534289993}
+  m_AudioClip: {fileID: 8300000, guid: 980bc11fda757f043994b8ea08095607, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &3598455530862642498
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: keypress-014_{3598455530862642498}
+  m_AudioClip: {fileID: 8300000, guid: 4ec4289edf0a35945bc9f3d7736c5a85, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &3957158311455808107
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: keypress-002_{3957158311455808107}
+  m_AudioClip: {fileID: 8300000, guid: bb50a2df216cf70438fe83ae8a53ec6f, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &4546606967603897344
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: keypress-016_{4546606967603897344}
+  m_AudioClip: {fileID: 8300000, guid: 73a4e2a9643340f488ffbc7234a92ee5, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &4769602229554367573
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: keypress-026_{4769602229554367573}
+  m_AudioClip: {fileID: 8300000, guid: 2a61838bd127d5648a9d18824b7f4cfc, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1307931743 &6418180475301049370
+AudioRandomContainer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Keyboard Button
+  m_Volume: 0
+  m_Pitch: 0
+  m_AutomaticTriggerTime: 0
+  m_LoopCount: 1
+  m_VolumeRandomizationRange: {x: -10, y: 10}
+  m_PitchRandomizationRange: {x: -200, y: 200}
+  m_AutomaticTriggerTimeRandomizationRange: {x: 0, y: 0}
+  m_LoopCountRandomizationRange: {x: 0, y: 0}
+  m_Elements:
+  - {fileID: 3957158311455808107}
+  - {fileID: 557434464443346589}
+  - {fileID: -134885013621538011}
+  - {fileID: -5359680172303105640}
+  - {fileID: 7328776444900648240}
+  - {fileID: -5266243541179991302}
+  - {fileID: 3598455530862642498}
+  - {fileID: 4546606967603897344}
+  - {fileID: -4988913873422121321}
+  - {fileID: -2578797896020300283}
+  - {fileID: -7782742151933332030}
+  - {fileID: -31164358155791711}
+  - {fileID: 4769602229554367573}
+  - {fileID: 2943255329534289993}
+  - {fileID: -6013896956145240059}
+  - {fileID: -2922128379159031940}
+  m_AvoidRepeatingLast: 2
+  m_PlaybackMode: 2
+  m_TriggerMode: 0
+  m_AutomaticTriggerMode: 1
+  m_LoopMode: 2
+  m_VolumeRandomizationEnabled: 1
+  m_PitchRandomizationEnabled: 1
+  m_AutomaticTriggerTimeRandomizationEnabled: 0
+  m_LoopCountRandomizationEnabled: 0
+--- !u!1233149941 &7328776444900648240
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: keypress-010_{7328776444900648240}
+  m_AudioClip: {fileID: 8300000, guid: 6479427f5b4c418468887519e272ae61, type: 3}
+  m_Volume: 0
+  m_Enabled: 1

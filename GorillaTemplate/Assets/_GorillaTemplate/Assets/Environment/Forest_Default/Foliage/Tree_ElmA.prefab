@@ -92,10 +92,26 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: ea9bfbef9d3e00045a76e1d5b35ff087, type: 2}
+    - target: {fileID: -8049249808356943138, guid: 7f71610705aab294180544e356e55cf9, type: 3}
+      propertyPath: m_TagString
+      value: Wood Surface
+      objectReference: {fileID: 0}
+    - target: {fileID: -7793100348485126107, guid: 7f71610705aab294180544e356e55cf9, type: 3}
+      propertyPath: m_TagString
+      value: Wood Surface
+      objectReference: {fileID: 0}
+    - target: {fileID: -7319239681743765619, guid: 7f71610705aab294180544e356e55cf9, type: 3}
+      propertyPath: m_TagString
+      value: Wood Surface
+      objectReference: {fileID: 0}
     - target: {fileID: -7210166471894669472, guid: 7f71610705aab294180544e356e55cf9, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: a721b7535d126034184de844b070359f, type: 2}
+    - target: {fileID: -7038544741151399490, guid: 7f71610705aab294180544e356e55cf9, type: 3}
+      propertyPath: m_TagString
+      value: Wood Surface
+      objectReference: {fileID: 0}
     - target: {fileID: -6858805447258467467, guid: 7f71610705aab294180544e356e55cf9, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -104,10 +120,22 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: ea9bfbef9d3e00045a76e1d5b35ff087, type: 2}
+    - target: {fileID: -6205914993987535624, guid: 7f71610705aab294180544e356e55cf9, type: 3}
+      propertyPath: m_TagString
+      value: Wood Surface
+      objectReference: {fileID: 0}
+    - target: {fileID: -5937718885675473013, guid: 7f71610705aab294180544e356e55cf9, type: 3}
+      propertyPath: m_TagString
+      value: Wood Surface
+      objectReference: {fileID: 0}
     - target: {fileID: -5849970465483749827, guid: 7f71610705aab294180544e356e55cf9, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: ea9bfbef9d3e00045a76e1d5b35ff087, type: 2}
+    - target: {fileID: -5075464526088878310, guid: 7f71610705aab294180544e356e55cf9, type: 3}
+      propertyPath: m_TagString
+      value: Wood Surface
+      objectReference: {fileID: 0}
     - target: {fileID: -4619991159869554270, guid: 7f71610705aab294180544e356e55cf9, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -120,6 +148,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: ea9bfbef9d3e00045a76e1d5b35ff087, type: 2}
+    - target: {fileID: -3891554132942518262, guid: 7f71610705aab294180544e356e55cf9, type: 3}
+      propertyPath: m_TagString
+      value: Wood Surface
+      objectReference: {fileID: 0}
     - target: {fileID: -3880389144850061699, guid: 7f71610705aab294180544e356e55cf9, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -132,6 +164,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: ea9bfbef9d3e00045a76e1d5b35ff087, type: 2}
+    - target: {fileID: -3045102947736124501, guid: 7f71610705aab294180544e356e55cf9, type: 3}
+      propertyPath: m_TagString
+      value: Wood Surface
+      objectReference: {fileID: 0}
     - target: {fileID: -1913847472856352293, guid: 7f71610705aab294180544e356e55cf9, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -144,6 +180,14 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: ea9bfbef9d3e00045a76e1d5b35ff087, type: 2}
+    - target: {fileID: -144682734798445405, guid: 7f71610705aab294180544e356e55cf9, type: 3}
+      propertyPath: m_TagString
+      value: Wood Surface
+      objectReference: {fileID: 0}
+    - target: {fileID: 241760459096055717, guid: 7f71610705aab294180544e356e55cf9, type: 3}
+      propertyPath: m_TagString
+      value: Wood Surface
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7f71610705aab294180544e356e55cf9, type: 3}
       propertyPath: m_Name
       value: Tree_ElmA
@@ -164,6 +208,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: a721b7535d126034184de844b070359f, type: 2}
+    - target: {fileID: 3158793121225146600, guid: 7f71610705aab294180544e356e55cf9, type: 3}
+      propertyPath: m_TagString
+      value: Wood Surface
+      objectReference: {fileID: 0}
     - target: {fileID: 3290544251829611534, guid: 7f71610705aab294180544e356e55cf9, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -220,6 +268,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: a721b7535d126034184de844b070359f, type: 2}
+    - target: {fileID: 7449604315471640125, guid: 7f71610705aab294180544e356e55cf9, type: 3}
+      propertyPath: m_TagString
+      value: Wood Surface
+      objectReference: {fileID: 0}
     - target: {fileID: 9079575941700224962, guid: 7f71610705aab294180544e356e55cf9, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 

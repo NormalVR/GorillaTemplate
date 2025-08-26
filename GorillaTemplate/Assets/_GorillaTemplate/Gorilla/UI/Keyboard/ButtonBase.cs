@@ -61,6 +61,12 @@ namespace Normal.GorillaTemplate.Keyboard {
         private float _lerpFactor = 20.0f;
 
         /// <summary>
+        /// An optional sound effect to play when the button is pressed.
+        /// </summary>
+        [SerializeField]
+        private AudioSource _pressSFX;
+
+        /// <summary>
         /// The original position of the button that it will return to after being pressed.
         /// </summary>
         private Vector3 _originalPosition;
@@ -131,6 +137,10 @@ namespace Normal.GorillaTemplate.Keyboard {
             _hasPressed = true;
             HandlePress();
             ApplyOnPressedFX();
+
+            if (_pressSFX != null) {
+                _pressSFX.Play();
+            }
         }
 
         /// <summary>

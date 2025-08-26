@@ -25,6 +25,7 @@ Need a feature for your game that's missing? Join our [Discord](https://discord.
 - Cosmetics
 - Grabbable objects
 - PlayFab & in-app purchases
+- Networked sound effects
 
 ### Getting Started
 1. [Download](https://github.com/NormalVR/GorillaTemplate/archive/refs/heads/main.zip) a copy of the template.

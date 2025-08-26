@@ -1,3 +1,12 @@
+[1.5.0]
+- Added networked hit sound effects for locomotion (HandHitProvider and HandHitFXV2 components).
+- Added sound effects to buttons and other UI elements.
+- Exposed RaycastHit (leftHandHitInfo and rightHandHitInfo) in the Player locomotion component.
+- The player model's head now rotates on the X and Z axis (while Y rotates the whole body).
+- Added a headOffset property to the Player locomotion component and improved the behavior of the component when the player rotates their head.
+- Added the GameModeIsDisabled property to the InfectionGameMode component. It can be used to toggle the gamemode at runtime.
+- A disabled InfectionGameMode component now applies GameModeIsDisabled=true on fresh models.
+
 [1.4.0]
 - Added the BannedUserManager component and the Playfab Banned scene. Users that are banned on Playfab now load that scene.
 - Added the XR Device Test scene to help users debug their PCVR connection.

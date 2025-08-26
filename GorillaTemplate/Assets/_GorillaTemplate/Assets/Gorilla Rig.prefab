@@ -417,7 +417,6 @@ GameObject:
   - component: {fileID: 430285557067231375}
   - component: {fileID: 7563712660881278272}
   - component: {fileID: 3866720048965155220}
-  - component: {fileID: 5576736073144738484}
   m_Layer: 0
   m_Name: Right Hand
   m_TagString: Untagged
@@ -832,21 +831,6 @@ MonoBehaviour:
     m_InputActionReference: {fileID: 0}
     m_ObjectReferenceObject: {fileID: 0}
     m_ManualValue: 0
---- !u!114 &5576736073144738484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 430285557067231374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da34a3fd3ec04c28b9ab33351acb7686, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _hand: 1
-  _amplitude: 0.35
-  _duration: 0.12
 --- !u!1 &430285557273465589
 GameObject:
   m_ObjectHideFlags: 0
@@ -903,6 +887,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 430285557519011103}
+  _handHitProvider: {fileID: 4757890869574275848}
   _turnLocomotion: {fileID: 221162676044501399}
 --- !u!114 &8805360727405952836
 MonoBehaviour:
@@ -948,15 +933,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 430285557273465589}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00b97b227efd4578926a006a0ccaf534, type: 3}
+  m_Script: {fileID: 11500000, guid: 06f6e500928368a41aa05f4e523ea635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 430285557519011103}
   _cooldownSeconds: 0.25
-  _leftHand:
-    haptics: {fileID: 4589392901685377307}
-  _rightHand:
-    haptics: {fileID: 5576736073144738484}
 --- !u!114 &7942131617446689927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1073,6 +1054,7 @@ MonoBehaviour:
   defaultPrecision: 0.995
   rightHandOffset: {x: 0, y: 0, z: 0}
   leftHandOffset: {x: 0, y: 0, z: 0}
+  headOffset: {x: 0, y: -0.1, z: -0.1}
   locomotionEnabledLayers:
     serializedVersion: 2
     m_Bits: 1
@@ -1117,7 +1099,6 @@ GameObject:
   - component: {fileID: 430285557680239485}
   - component: {fileID: 1750326371128376475}
   - component: {fileID: 8721494613407129976}
-  - component: {fileID: 4589392901685377307}
   m_Layer: 0
   m_Name: Left Hand
   m_TagString: Untagged
@@ -1532,21 +1513,6 @@ MonoBehaviour:
     m_InputActionReference: {fileID: 0}
     m_ObjectReferenceObject: {fileID: 0}
     m_ManualValue: 0
---- !u!114 &4589392901685377307
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 430285557680239484}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da34a3fd3ec04c28b9ab33351acb7686, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _hand: 0
-  _amplitude: 0.35
-  _duration: 0.12
 --- !u!1 &430285557946750770
 GameObject:
   m_ObjectHideFlags: 0
