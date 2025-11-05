@@ -63,3 +63,17 @@ Have you created a YouTube tutorial or TikTok? Let us know in [Discord](https://
   <br>
   SnowGT: How to add cosmetics to your GorillaTemplate with playfab!
 </a>
+
+### License
+Gorilla Template is licensed under the MIT License with Creator Protection Clause. This means you can:
+
+✅ **Allowed**:
+- Use Gorilla Template for any purpose (personal, commercial, academic)
+- Modify the code
+- Distribute copies
+- Create and sell products built using Gorilla Template
+
+❌ **Not Allowed**:
+- Use it to build or promote a product that competes with [Normcore](https://normcore.io/) (Normal's multiplayer framework)
+
+See the [License](License.md) file for the complete license text for more information.
