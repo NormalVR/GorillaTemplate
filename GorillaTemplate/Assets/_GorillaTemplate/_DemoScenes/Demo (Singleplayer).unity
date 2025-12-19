@@ -635,7 +635,6 @@ GameObject:
   m_Component:
   - component: {fileID: 723947260}
   - component: {fileID: 723947261}
-  - component: {fileID: 723947263}
   - component: {fileID: 723947262}
   - component: {fileID: 723947264}
   - component: {fileID: 723947265}
@@ -676,9 +675,17 @@ MonoBehaviour:
   _autoInitialized: 1
   _obsoleteAppKey: 
   _normcoreAppSettings: {fileID: 11400000, guid: a14b2e7da76a9544eb8ef9225c55eb6d, type: 2}
+  _joinRoomOnStartOptions:
+    _enabled: 1
+    _mode: 2
+    _roomName: Offline Room
+    _roomGroupName: test-group
+    _roomCapacity: 4
+    _roomServerConfiguration: 
+  _serializedVersion: 1
   _joinRoomOnStart: 0
-  _roomToJoinOnStart: Test Room
-  _roomServerConfigurationToJoinOnStart: 
+  _roomToJoinOnStart: 
+  _useOfflineModeForJoinRoomOnStart: 0
 --- !u!114 &723947262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -697,19 +704,6 @@ MonoBehaviour:
     head: {fileID: 1738795578}
     leftHand: {fileID: 1738795577}
     rightHand: {fileID: 1738795576}
---- !u!114 &723947263
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 723947259}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6b3dafd677643bf8ebde14743902cac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roomName: Offline Room
 --- !u!114 &723947264
 MonoBehaviour:
   m_ObjectHideFlags: 0

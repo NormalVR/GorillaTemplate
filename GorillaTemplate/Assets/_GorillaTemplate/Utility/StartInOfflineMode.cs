@@ -1,10 +1,12 @@
-﻿using Normal.Realtime;
+﻿using System;
+using Normal.Realtime;
 using UnityEngine;
 
 namespace Normal.Utility {
     /// <summary>
     /// Connects to an offline room on Start().
     /// </summary>
+    [Obsolete("Use Realtime.joinRoomOnStartOptions instead.")]
     [RequireComponent(typeof(Realtime.Realtime))]
     public class StartInOfflineMode : MonoBehaviour {
         /// <summary>

@@ -10,11 +10,13 @@
       "url": "https://packages.unity.com"
     },
     "com.normalvr.normcore": {
-      "version": "2.15.5",
+      "version": "3.0.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.editorcoroutines": "1.0.0"
+        "com.unity.editorcoroutines": "1.0.0",
+        "com.unity.profiling.core": "1.0.3",
+        "com.unity.nuget.newtonsoft-json": "3.2.2"
       },
       "url": "https://normcore-registry.normcore.io"
     },
@@ -121,6 +123,13 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+    "com.unity.nuget.newtonsoft-json": {
+      "version": "3.2.2",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
     "com.unity.polybrush": {
       "version": "1.1.8",
       "depth": 0,
@@ -143,8 +152,8 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.profiling.core": {
-      "version": "1.0.2",
-      "depth": 0,
+      "version": "1.0.3",
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
