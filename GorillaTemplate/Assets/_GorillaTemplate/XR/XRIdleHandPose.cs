@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
+using UnityEngine.Serialization;
 using UnityEngine.XR;
 
 namespace Normal.XR {
@@ -22,10 +23,19 @@ namespace Normal.XR {
         private Transform _idleTargetTransform;
 
         /// <summary>
-        /// The hand's transform. This transform will be pulled.
+        /// This is the transform that this component will modify.
+        /// </summary>
+        [FormerlySerializedAs("_handTransform")]
+        [SerializeField]
+        private Transform _handTrackingTransform;
+
+        /// <summary>
+        /// The hand's effective transform (ex with offset applied).
+        /// The component will try to match this to <see cref="_idleTargetTransform"/> by modifying <see cref="_handTrackingTransform"/>.
+        /// If unassigned then <see cref="_handTrackingTransform"/> will be used.
         /// </summary>
         [SerializeField]
-        private Transform _handTransform;
+        private Transform _handPoseTransform;
 
         /// <summary>
         /// (Optional) The InputSystem TrackedPoseDriver that is driving the hand.
@@ -75,9 +85,15 @@ namespace Normal.XR {
                 _trackedPoseDriver.enabled = hasPositionTracking && hasRotationTracking;
             }
 
-            if (!hasPositionTracking || !hasRotationTracking) {
-                _handTransform.position = Vector3.Lerp(_handTransform.position, _idleTargetTransform.position, _smoothingFactor);
-                _handTransform.rotation = Quaternion.Slerp(_handTransform.rotation, _idleTargetTransform.rotation, _smoothingFactor);
+            if (hasPositionTracking == false || hasRotationTracking == false) {
+                var positionOffset = _handPoseTransform.position - _handTrackingTransform.position;
+                var rotationOffset = Quaternion.Inverse(_handTrackingTransform.rotation) * _handPoseTransform.rotation;
+
+                var targetPosition = _idleTargetTransform.position - positionOffset;
+                var targetRotation = _idleTargetTransform.rotation * Quaternion.Inverse(rotationOffset);
+
+                _handTrackingTransform.position = Vector3.Lerp(_handTrackingTransform.position, targetPosition, _smoothingFactor);
+                _handTrackingTransform.rotation = Quaternion.Slerp(_handTrackingTransform.rotation, targetRotation, _smoothingFactor);
             }
         }
     }

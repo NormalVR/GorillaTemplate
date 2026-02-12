@@ -24,11 +24,11 @@
         #include "../Skybox/GradientSkybox.cginc"
 
         sampler2D _MainTex;
-        fixed3 _Color;
+        half3 _Color;
 
-        fixed3 _ColorT;
-        fixed3 _ColorM;
-        fixed3 _ColorB;
+        half3 _ColorT;
+        half3 _ColorM;
+        half3 _ColorB;
         half _ExponentT;
         half _ExponentB;
         half _Intensity;

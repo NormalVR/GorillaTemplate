@@ -1,3 +1,15 @@
+[3.0.0]
+- Implemented Quickmatch
+- Updated to Normcore 3
+- Updated Unity to version 6000.3.6f1
+- Switched the XR plugin from Oculus XR to OpenXR
+  - The "Gorilla Rig" prefab now has two new Transforms: "Left Hand With Tracking Offset" and "Right Hand With Tracking Offset" which replace "Left Hand" and "Right Hand" on the RealtimeAvatarManager's "Local Player > Left Hand" "Local Player > Right Hand" fields.
+  - Removed the XROrigin component from the "Gorilla Rig" prefab, replaced by the XRTrackingOriginMode component
+- Updated Meta XR Platform SDK to version 83.0.1
+- Fixed a bug in AutoDistributeViewOwnership.cs (isLocallyOwnedConfirmed not being cleared when switching rooms)
+- Improved the material colors in the Blank Scene Template
+- Improved the sample skybox and floor shaders in the Blank Scene Template
+
 [1.5.0]
 - Added networked hit sound effects for locomotion (HandHitProvider and HandHitFXV2 components).
 - Added sound effects to buttons and other UI elements.

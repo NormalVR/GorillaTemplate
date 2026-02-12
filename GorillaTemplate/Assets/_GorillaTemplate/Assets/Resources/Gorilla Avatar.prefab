@@ -3634,6 +3634,18 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1602814562895404597, guid: 2a21c89909497934d99180d57c72cbac, type: 3}
+      propertyPath: m_AABB.m_Extent.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -1602814562895404597, guid: 2a21c89909497934d99180d57c72cbac, type: 3}
+      propertyPath: m_AABB.m_Extent.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -1602814562895404597, guid: 2a21c89909497934d99180d57c72cbac, type: 3}
+      propertyPath: m_AABB.m_Extent.z
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2a21c89909497934d99180d57c72cbac, type: 3}
       propertyPath: m_Name
       value: GorillaModel
@@ -3645,6 +3657,18 @@ PrefabInstance:
     - target: {fileID: 1386455480036594513, guid: 2a21c89909497934d99180d57c72cbac, type: 3}
       propertyPath: m_CastShadows
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1386455480036594513, guid: 2a21c89909497934d99180d57c72cbac, type: 3}
+      propertyPath: m_AABB.m_Extent.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1386455480036594513, guid: 2a21c89909497934d99180d57c72cbac, type: 3}
+      propertyPath: m_AABB.m_Extent.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1386455480036594513, guid: 2a21c89909497934d99180d57c72cbac, type: 3}
+      propertyPath: m_AABB.m_Extent.z
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1630794972795428178, guid: 2a21c89909497934d99180d57c72cbac, type: 3}
       propertyPath: m_Materials.Array.size
@@ -3689,6 +3713,18 @@ PrefabInstance:
     - target: {fileID: 8120238488434358599, guid: 2a21c89909497934d99180d57c72cbac, type: 3}
       propertyPath: m_CastShadows
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8120238488434358599, guid: 2a21c89909497934d99180d57c72cbac, type: 3}
+      propertyPath: m_AABB.m_Extent.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8120238488434358599, guid: 2a21c89909497934d99180d57c72cbac, type: 3}
+      propertyPath: m_AABB.m_Extent.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8120238488434358599, guid: 2a21c89909497934d99180d57c72cbac, type: 3}
+      propertyPath: m_AABB.m_Extent.z
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

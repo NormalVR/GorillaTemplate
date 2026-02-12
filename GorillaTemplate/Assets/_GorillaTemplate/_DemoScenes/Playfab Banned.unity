@@ -195,6 +195,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -678,7 +679,6 @@ GameObject:
   m_Component:
   - component: {fileID: 723947260}
   - component: {fileID: 723947261}
-  - component: {fileID: 723947263}
   - component: {fileID: 723947262}
   - component: {fileID: 723947264}
   - component: {fileID: 723947265}
@@ -719,9 +719,17 @@ MonoBehaviour:
   _autoInitialized: 1
   _obsoleteAppKey: 
   _normcoreAppSettings: {fileID: 11400000, guid: a14b2e7da76a9544eb8ef9225c55eb6d, type: 2}
+  _joinRoomOnStartOptions:
+    _enabled: 1
+    _mode: 2
+    _roomName: Offline Room
+    _roomGroupName: test-group
+    _roomCapacity: 4
+    _roomServerConfiguration: 
+  _serializedVersion: 1
   _joinRoomOnStart: 0
-  _roomToJoinOnStart: Test Room
-  _roomServerConfigurationToJoinOnStart: 
+  _roomToJoinOnStart: 
+  _useOfflineModeForJoinRoomOnStart: 0
 --- !u!114 &723947262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -738,21 +746,8 @@ MonoBehaviour:
   _localPlayer:
     root: {fileID: 1738795579}
     head: {fileID: 1738795578}
-    leftHand: {fileID: 1738795577}
+    leftHand: {fileID: 1439574683}
     rightHand: {fileID: 1738795576}
---- !u!114 &723947263
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 723947259}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6b3dafd677643bf8ebde14743902cac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roomName: Offline Room
 --- !u!114 &723947264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -853,6 +848,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1169,6 +1165,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1267578649}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1439574683 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7627177701095502813, guid: 5a221d46a09b7d54f98b12b55c7ee2fb, type: 3}
+  m_PrefabInstance: {fileID: 1738795575}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1738795575
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1240,12 +1241,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 5a221d46a09b7d54f98b12b55c7ee2fb, type: 3}
 --- !u!4 &1738795576 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 430285557067231375, guid: 5a221d46a09b7d54f98b12b55c7ee2fb, type: 3}
-  m_PrefabInstance: {fileID: 1738795575}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1738795577 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 430285557680239485, guid: 5a221d46a09b7d54f98b12b55c7ee2fb, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8076120511846506708, guid: 5a221d46a09b7d54f98b12b55c7ee2fb, type: 3}
   m_PrefabInstance: {fileID: 1738795575}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1738795578 stripped
@@ -1269,11 +1265,11 @@ PrefabInstance:
     - target: {fileID: 4344890289317536052, guid: aefc6b69915b8c8469a4fe86a04e054e, type: 3}
       propertyPath: _realtime
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 723947261}
     - target: {fileID: 4344890289317536052, guid: aefc6b69915b8c8469a4fe86a04e054e, type: 3}
       propertyPath: _gorillaPlayerManager
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 723947264}
     - target: {fileID: 5551629673927632292, guid: aefc6b69915b8c8469a4fe86a04e054e, type: 3}
       propertyPath: _realtime
       value: 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
@@ -7,6 +8,7 @@ namespace Normal.Utility {
     /// <summary>
     /// Connects to a random room from the user-provided list.
     /// </summary>
+    [Obsolete("Replaced by Realtime's quickmatch system.")]
     [RequireComponent(typeof(Realtime.Realtime))]
     public class RandomRoomConnector : MonoBehaviour {
         /// <summary>
@@ -32,7 +34,7 @@ namespace Normal.Utility {
         }
 
         private void OnValidate() {
-            if (TryGetComponent(out Realtime.Realtime realtime) && realtime.joinRoomOnStart) {
+            if (TryGetComponent(out Realtime.Realtime realtime) && realtime.joinRoomOnStartOptions.enabled) {
                 Debug.LogError($"The Realtime's \"Join Room On Start\" checkbox is ticked, which conflicts with this component. Untick the checkbox to use this component.");
             }
         }

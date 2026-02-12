@@ -35,37 +35,30 @@ namespace Normal.GorillaTemplate {
                 return cachedProduct;
             }
 
-            var taskCompletionSource = new TaskCompletionSource<Product>();
-
             try {
-                IAP.GetProductsBySKU(new[] { sku }).OnComplete(result => {
-                    if (result.IsError) {
-                        Debug.LogError($"Failed to get the product details for SKU \"{sku}\": {result.GetError().Message}");
-                        taskCompletionSource.SetResult(null);
-                        return;
-                    }
+                var result = await IAP.GetProductsBySKU(new[] { sku });
+                if (result.IsError) {
+                    Debug.LogError($"Failed to get the product details for SKU \"{sku}\": {result.GetError().Message}");
+                    return null;
+                }
 
-                    var products = result.Data;
+                var products = result.Data;
 
-                    if (products.Count == 0) {
-                        Debug.LogWarning($"No product details found for SKU \"{sku}\"!");
-                        taskCompletionSource.SetResult(null);
-                        return;
-                    }
+                if (products.Count == 0) {
+                    Debug.LogWarning($"No product details found for SKU \"{sku}\"!");
+                    return null;
+                }
 
-                    // Different produces can be returned for the same SKU, to handle regional pricing.
-                    // By default, the first result uses the appropriate regional pricing for the user.
-                    var product = products[0];
+                // Different produces can be returned for the same SKU, to handle regional pricing.
+                // By default, the first result uses the appropriate regional pricing for the user.
+                var product = products[0];
 
-                    __productCache[sku] = product;
-                    taskCompletionSource.SetResult(product);
-                });
+                __productCache[sku] = product;
+                return product;
             } catch (Exception ex) {
                 Debug.LogError($"Failed to get the product details for SKU \"{sku}\": {ex.Message}");
-                taskCompletionSource.SetResult(null);
+                return null;
             }
-
-            return await taskCompletionSource.Task;
         }
 
         /// <summary>
@@ -96,67 +89,51 @@ namespace Normal.GorillaTemplate {
 
             Debug.Log($"Attempting to purchase SKU \"{sku}\"...");
 
-            var taskCompletionSource = new TaskCompletionSource<bool>();
-
             try {
-                IAP.LaunchCheckoutFlow(sku).OnComplete(result => {
-                    async Task HandleResult() {
-                        if (result.IsError) {
-                            Debug.LogError($"Failed to purchase SKU \"{sku}\": {result.GetError().Message}");
-                            taskCompletionSource.SetResult(false);
-                            return;
-                        }
+                var result = await IAP.LaunchCheckoutFlow(sku);
+                if (result.IsError) {
+                    Debug.LogError($"Failed to purchase SKU \"{sku}\": {result.GetError().Message}");
+                    return false;
+                }
 
-                        var purchase = result.Data;
+                var purchase = result.Data;
 
-                        if (purchase == null) {
-                            Debug.Log($"Purchase cancelled for SKU \"{sku}\".");
-                            taskCompletionSource.SetResult(false);
-                            return;
-                        }
+                if (purchase == null) {
+                    Debug.Log($"Purchase cancelled for SKU \"{sku}\".");
+                    return false;
+                }
 
-                        // If the purchase type is not consumable, we can finalize the purchase immediately.
-                        if (purchase.Type != ProductType.CONSUMABLE) {
-                            Debug.Log($"Purchase successful for SKU \"{sku}\".");
-                            taskCompletionSource.SetResult(true);
-                            return;
-                        }
+                // If the purchase type is not consumable, we can finalize the purchase immediately.
+                if (purchase.Type != ProductType.CONSUMABLE) {
+                    Debug.Log($"Purchase successful for SKU \"{sku}\".");
+                    return true;
+                }
 
-                        // If the purchase type is consumable, we need to consume it.
-                        if (consumePurchaseCallback == null) {
-                            Debug.LogError("When purchasing a consumable SKU, the purchased items must be granted to the user from within consumePurchaseCallback. The Meta Horizon store will automatically refund this user.");
-                            taskCompletionSource.SetResult(false);
-                            return;
-                        }
+                // If the purchase type is consumable, we need to consume it.
+                if (consumePurchaseCallback == null) {
+                    Debug.LogError("When purchasing a consumable SKU, the purchased items must be granted to the user from within consumePurchaseCallback. The Meta Horizon store will automatically refund this user.");
+                    return false;
+                }
 
-                        var success = await consumePurchaseCallback(purchase);
+                var success = await consumePurchaseCallback(purchase);
 
-                        if (!success) {
-                            Debug.LogError($"Failed to consume purchase for SKU \"{sku}\"!");
-                            taskCompletionSource.SetResult(false);
-                            return;
-                        }
+                if (!success) {
+                    Debug.LogError($"Failed to consume purchase for SKU \"{sku}\"!");
+                    return false;
+                }
 
-                        IAP.ConsumePurchase(purchase.Sku).OnComplete(consumeResult => {
-                            if (consumeResult.IsError) {
-                                Debug.LogError($"Failed to consume purchase for SKU \"{sku}\": {consumeResult.GetError().Message}");
-                                taskCompletionSource.SetResult(false);
-                                return;
-                            }
+                var consumeResult = await IAP.ConsumePurchase(purchase.Sku);
+                if (consumeResult.IsError) {
+                    Debug.LogError($"Failed to consume purchase for SKU \"{sku}\": {consumeResult.GetError().Message}");
+                    return false;
+                }
 
-                            Debug.Log($"Purchase consumed successfully for SKU \"{sku}\".");
-                            taskCompletionSource.SetResult(true);
-                        });
-                    }
-
-                    _ = HandleResult();
-                });
+                Debug.Log($"Purchase consumed successfully for SKU \"{sku}\".");
+                return true;
             } catch (Exception ex) {
                 Debug.LogError($"Failed to purchase SKU \"{sku}\": {ex.Message}");
-                taskCompletionSource.SetResult(false);
+                return false;
             }
-
-            return await taskCompletionSource.Task;
         }
     }
 }

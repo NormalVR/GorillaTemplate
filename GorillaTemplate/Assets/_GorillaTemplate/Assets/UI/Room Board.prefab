@@ -171,8 +171,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74176d0cda2d4e328b7bb1d924649d63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _visual: {fileID: 8035767169691996825}
   _connecter: {fileID: 0}
+  _nameText: {fileID: 8035767169691996825}
+  _disconnectEventText: {fileID: 0}
 --- !u!1 &1983575507124656873
 GameObject:
   m_ObjectHideFlags: 0
@@ -572,6 +573,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0

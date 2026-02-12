@@ -1,4 +1,5 @@
 {
+    "version": 1,
     "name": "Gorrila Template Input Actions",
     "maps": [
         {
@@ -9,7 +10,7 @@
                     "name": "Head Tracking State",
                     "type": "Value",
                     "id": "b95a1cf0-4c24-4cca-8e39-b8cb76d9742c",
-                    "expectedControlType": "",
+                    "expectedControlType": "Integer",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -36,7 +37,7 @@
                     "name": "Left Hand Tracking State",
                     "type": "Value",
                     "id": "1253ab16-f792-4274-99ab-5ce40ce12013",
-                    "expectedControlType": "",
+                    "expectedControlType": "Integer",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -63,7 +64,7 @@
                     "name": "Right Hand Tracking State",
                     "type": "Value",
                     "id": "99c6e9f5-0060-4a13-828a-4c771d676e0d",
-                    "expectedControlType": "",
+                    "expectedControlType": "Integer",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -973,7 +974,7 @@
             "actions": [
                 {
                     "name": "Left Hand Grab",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "1be862f2-04fb-47e9-8f88-931d0ea333b8",
                     "expectedControlType": "",
                     "processors": "",
@@ -984,7 +985,7 @@
                     "name": "Left Hand Position",
                     "type": "Value",
                     "id": "384faaf2-f8e5-418e-9ded-76982a216fe4",
-                    "expectedControlType": "",
+                    "expectedControlType": "Vector3",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -993,7 +994,7 @@
                     "name": "Left Hand Rotation",
                     "type": "Value",
                     "id": "5308191b-3350-4079-8df0-266ab4ab3fc0",
-                    "expectedControlType": "",
+                    "expectedControlType": "Quaternion",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -1002,7 +1003,7 @@
                     "name": "Left Hand Linear Velocity",
                     "type": "Value",
                     "id": "c7aa066a-65ba-4008-9b4b-9e4490a9dd1c",
-                    "expectedControlType": "",
+                    "expectedControlType": "Vector3",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -1011,14 +1012,14 @@
                     "name": "Left Hand Angular Velocity",
                     "type": "Value",
                     "id": "0bfb73e1-a6fd-4a9a-9160-7b10802b863e",
-                    "expectedControlType": "",
+                    "expectedControlType": "Vector3",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
                 },
                 {
                     "name": "Right Hand Grab",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "c27788f8-367a-4c6b-b2e4-7a2bba6c6956",
                     "expectedControlType": "",
                     "processors": "",
@@ -1029,7 +1030,7 @@
                     "name": "Right Hand Position",
                     "type": "Value",
                     "id": "9f5b44fb-06a9-437b-84d4-3114026973b1",
-                    "expectedControlType": "",
+                    "expectedControlType": "Vector3",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -1038,7 +1039,7 @@
                     "name": "Right Hand Rotation",
                     "type": "Value",
                     "id": "29afbf81-f446-44ef-9377-9c3334cd4d31",
-                    "expectedControlType": "",
+                    "expectedControlType": "Quaternion",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -1047,7 +1048,7 @@
                     "name": "Right Hand Linear Velocity",
                     "type": "Value",
                     "id": "6c19db27-78bc-46c1-8af9-9d79bc4e742a",
-                    "expectedControlType": "",
+                    "expectedControlType": "Vector3",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -1056,7 +1057,7 @@
                     "name": "Right Hand Angular Velocity",
                     "type": "Value",
                     "id": "f3b04dc4-b50d-412d-b802-6af84c4002fd",
-                    "expectedControlType": "",
+                    "expectedControlType": "Vector3",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -1088,7 +1089,7 @@
                 {
                     "name": "",
                     "id": "e01659a5-ece9-494a-9765-928f80021ffa",
-                    "path": "<XRController>{LeftHand}/deviceVelocity",
+                    "path": "<XRController>{LeftHand}/{DeviceVelocity}",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -1121,7 +1122,7 @@
                 {
                     "name": "",
                     "id": "bfcb51b0-e10b-4039-b6b7-414a3de7b413",
-                    "path": "<XRController>{RightHand}/deviceVelocity",
+                    "path": "<XRController>{RightHand}/{DeviceVelocity}",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -1154,7 +1155,7 @@
                 {
                     "name": "",
                     "id": "c6e02309-4947-4062-86a2-310711d522a0",
-                    "path": "<XRController>{LeftHand}/deviceAngularVelocity",
+                    "path": "<XRController>{LeftHand}/{DeviceAngularVelocity}",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -1165,7 +1166,7 @@
                 {
                     "name": "",
                     "id": "8f39da56-6227-48ed-ada0-4700de365f30",
-                    "path": "<XRController>{RightHand}/deviceAngularVelocity",
+                    "path": "<XRController>{RightHand}/{DeviceAngularVelocity}",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

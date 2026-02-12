@@ -104,27 +104,18 @@ namespace Normal.GorillaTemplate {
 
             Debug.Log("Getting user details from Meta Platform...");
 
-            var taskCompletionSource = new TaskCompletionSource<bool>();
-
             try {
-                Users.GetLoggedInUser().OnComplete(result => {
-                    if (result.IsError) {
-                        Debug.LogError($"Failed to get user details from Meta Platform: {result.GetError().Message}");
-                        taskCompletionSource.SetResult(false);
-                        return;
-                    }
+                var result = await Users.GetLoggedInUser();
+                if (result.IsError) {
+                    Debug.LogError($"Failed to get user details from Meta Platform: {result.GetError().Message}");
+                    return;
+                }
 
-                    user = result.Data;
-
-                    Debug.Log("Finished getting user details from Meta Platform.");
-                    taskCompletionSource.SetResult(true);
-                });
+                user = result.Data;
+                Debug.Log("Finished getting user details from Meta Platform.");
             } catch (Exception ex) {
                 Debug.LogError($"Failed to get user details from Meta Platform: {ex.Message}");
-                taskCompletionSource.SetResult(false);
             }
-
-            await taskCompletionSource.Task;
         }
 
         private static async Task EntitlementsCheckAsync() {
@@ -144,29 +135,21 @@ namespace Normal.GorillaTemplate {
 
             Debug.Log("Checking if the user is entitled to this application via the Meta Platform...");
 
-            var taskCompletionSource = new TaskCompletionSource<bool>();
-
             try {
-                Entitlements.IsUserEntitledToApplication().OnComplete(result => {
-                    if (result.IsError) {
-                        Debug.LogError($"Meta Platform entitlement check failed: {result.GetError().Message}");
-                        taskCompletionSource.SetResult(false);
+                var result = await Entitlements.IsUserEntitledToApplication();
+                if (result.IsError) {
+                    Debug.LogError($"Meta Platform entitlement check failed: {result.GetError().Message}");
 
-                        // Quit the application, the user doesn't have permission to run this app.
-                        Debug.LogError("Quitting application due to failed entitlement check!");
-                        Application.Quit();
-                        return;
-                    }
+                    // Quit the application, the user doesn't have permission to run this app.
+                    Debug.LogError("Quitting application due to failed entitlement check!");
+                    Application.Quit();
+                    return;
+                }
 
-                    Debug.Log("User is entitled to this application via the Meta Platform.");
-                    taskCompletionSource.SetResult(true);
-                });
+                Debug.Log("User is entitled to this application via the Meta Platform.");
             } catch (Exception e) {
                 Debug.LogError($"Failed to check Meta Platform entitlements: {e.Message}");
-                taskCompletionSource.SetResult(false);
             }
-
-            await taskCompletionSource.Task;
         }
 
         internal static bool CheckConfiguredAndInitialized(string prefix = "") {

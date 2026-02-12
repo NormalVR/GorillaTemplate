@@ -54,8 +54,8 @@ namespace Normal.Utility {
         }
 
         private void Update() {
-            if (_view.realtime == null ||
-                _view.realtime.connected == false) {
+            if (_view.realtime == null || _view.realtime.connected == false) {
+                isLocallyOwnedConfirmed = false;
                 return;
             }
 

@@ -141,13 +141,6 @@ namespace Normal.GorillaTemplate {
         private InputActionProperty _handPositionAction;
 
         /// <summary>
-        /// The input action that provides the XR controller's rotation (in room space).
-        /// This is used to correctly interpret the XR controller angular velocity.
-        /// </summary>
-        [SerializeField]
-        private InputActionProperty _handRotationAction;
-
-        /// <summary>
         /// The input action that provides the XR controller's linear velocity (in room space).
         /// </summary>
         [SerializeField]
@@ -203,12 +196,6 @@ namespace Normal.GorillaTemplate {
                 _handPositionAction.action.Enable();
             } else {
                 Debug.LogError($"{nameof(_handPositionAction)} is unassigned");
-            }
-
-            if (_handRotationAction.action != null) {
-                _handRotationAction.action.Enable();
-            } else {
-                Debug.LogError($"{nameof(_handRotationAction)} is unassigned");
             }
 
             if (_handLinearVelocityAction.action != null) {
@@ -318,38 +305,16 @@ namespace Normal.GorillaTemplate {
         /// Returns the value of <see cref="_handAngularVelocityAction"/> in world-space.
         /// </summary>
         /// <remarks>
-        /// Written for Meta Quest and the Oculus XR plugin.
-        /// Might not work with the OpenXR plugin.
+        /// Written for Meta Quest and the OpenXR plugin.
+        /// For Oculus XR plugin see https://discussions.unity.com/t/different-angular-velocity-readouts-on-quest-vs-rift/810727/2
         /// </remarks>
         private Vector3 GetAngularVelocityInWorldSpace() {
-            // Following the approach outlined in https://discussions.unity.com/t/different-angular-velocity-readouts-on-quest-vs-rift/810727/2
+            var angularVelocityInRoomSpace = _handAngularVelocityAction.action.ReadValue<Vector3>();
 
-            var rawAngularVelocity = _handAngularVelocityAction.action.ReadValue<Vector3>();
+            // Convert to world-space
+            var angularVelocityInWorldSpace = _grabber.bodyRoot.TransformDirection(angularVelocityInRoomSpace);
 
-            if (Application.platform == RuntimePlatform.Android) {
-                // Assume this is Quest standalone
-
-                // Quest standalone returns the angular velocity relative to the controller itself
-                // It must also be negated
-                var angularVelocityInControllerSpace = -rawAngularVelocity;
-
-                // Convert to world-space
-                var controllerRotation = _handRotationAction.action.ReadValue<Quaternion>();
-                var angularVelocityInRoomSpace = Quaternion.Inverse(controllerRotation) * angularVelocityInControllerSpace;
-                var angularVelocityInWorldSpace = _grabber.bodyRoot.TransformDirection(angularVelocityInRoomSpace);
-
-                return angularVelocityInWorldSpace;
-            } else {
-                // Assume this is Quest Link
-
-                // Quest Link returns the angular velocity in room space, but it must be negated
-                var angularVelocityInRoomSpace = -rawAngularVelocity;
-
-                // Convert to world-space
-                var angularVelocityInWorldSpace = _grabber.bodyRoot.TransformDirection(angularVelocityInRoomSpace);
-
-                return angularVelocityInWorldSpace;
-            }
+            return angularVelocityInWorldSpace;
         }
 
         protected virtual void Update() {

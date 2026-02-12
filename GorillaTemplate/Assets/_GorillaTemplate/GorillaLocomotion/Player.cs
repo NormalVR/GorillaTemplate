@@ -137,8 +137,23 @@ namespace GorillaLocomotion
         // Prevents us from falling through the floor on frame spikes (ex after first load)
         private float deltaTime => Mathf.Min(Time.deltaTime, 1f / 20f);
 
+        private int _frameCount;
+
         private void Update()
         {
+            // Wait for XR tracking mode to be applied
+            if (_frameCount < 6)
+            {
+                _frameCount++;
+
+                lastLeftHandPosition = CurrentLeftHandPosition();
+                lastRightHandPosition = CurrentRightHandPosition();
+                lastHeadPosition = headCollider.transform.position;
+                lastPosition = transform.position;
+
+                return;
+            }
+
             bool leftHandColliding = false;
             bool rightHandColliding = false;
             Vector3 finalPosition;

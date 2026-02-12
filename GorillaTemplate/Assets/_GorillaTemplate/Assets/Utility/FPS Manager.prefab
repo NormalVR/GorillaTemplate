@@ -58,5 +58,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efc9dd0ecfcbcae4c90046191ff66a33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _manualOverride: 0
-  _manualOverrideTickRate: 50
+  _tickRate: 90

@@ -21,7 +21,7 @@ namespace PlayFab.Internal
             if (_instance == null)
             {
                 //find existing instance
-                _instance = FindObjectOfType<T>();
+                _instance = FindFirstObjectByType<T>();
                 if (_instance == null)
                 {
                     //create new instance

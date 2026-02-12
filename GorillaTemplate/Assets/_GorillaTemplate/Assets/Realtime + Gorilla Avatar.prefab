@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8840100891041073872}
   - component: {fileID: 6133357424176075163}
+  - component: {fileID: 4561190796698009281}
   - component: {fileID: 7913670023823838024}
-  - component: {fileID: 99313689805041146}
   - component: {fileID: 6693574861097370393}
   - component: {fileID: 9127752703490469373}
   - component: {fileID: 2158251924802783094}
@@ -53,9 +53,29 @@ MonoBehaviour:
   _autoInitialized: 1
   _obsoleteAppKey: 
   _normcoreAppSettings: {fileID: 11400000, guid: a14b2e7da76a9544eb8ef9225c55eb6d, type: 2}
+  _joinRoomOnStartOptions:
+    _enabled: 1
+    _mode: 1
+    _roomName: Default Room
+    _roomGroupName: default
+    _roomCapacity: 16
+    _roomServerConfiguration: 
+  _serializedVersion: 1
   _joinRoomOnStart: 0
-  _roomToJoinOnStart: Default Room
-  _roomServerConfigurationToJoinOnStart: 
+  _roomToJoinOnStart: 
+  _useOfflineModeForJoinRoomOnStart: 0
+--- !u!114 &4561190796698009281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3117176247639341373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 2130093491, guid: ebae63e7edba59945a994528ada1f7a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7913670023823838024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,38 +88,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a21edb7717b14f8a9bb5575ce4bf5109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &99313689805041146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3117176247639341373}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3c8b22228333b444baba2bb005d6e2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _roomNames:
-  - A
-  - B
-  - C
-  - D
-  _connectAction:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7913670023823838024}
-        m_TargetAssemblyTypeName: Normal.SeamlessRooms.SeamlessRoomConnecter, Assembly-CSharp
-        m_MethodName: ConnectToRoom
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &6693574861097370393
 MonoBehaviour:
   m_ObjectHideFlags: 0

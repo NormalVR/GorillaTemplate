@@ -1,3 +1,4 @@
+using System;
 using Normal.GorillaTemplate.Keyboard;
 using UnityEngine;
 
@@ -5,6 +6,7 @@ namespace Normal.GorillaTemplate.UI.Computer {
     /// <summary>
     /// A tab that connects to a room.
     /// </summary>
+    [Obsolete("Replaced by PrivateRoomTab")]
     public class RoomTab : Tab {
         private const int __maxCodeLength = 6;
 

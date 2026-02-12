@@ -10,10 +10,22 @@ namespace Normal.GorillaTemplate.UI.Computer {
     /// </summary>
     public class Computer : Keyboard.Keyboard {
         /// <summary>
-        /// An event that is dispatched when the user picks a room to connect to.
+        /// An event that is dispatched when the user picks a private room to connect to.
         /// </summary>
         [SerializeField]
         private UnityEvent<string> _doConnect;
+
+        /// <summary>
+        /// An event that is dispatched when the user picks a public room to connect to.
+        /// </summary>
+        [SerializeField]
+        private UnityEvent<string> _doConnectPublic;
+
+        /// <summary>
+        /// An event that is dispatched when the user selects quickmatch.
+        /// </summary>
+        [SerializeField]
+        private UnityEvent _doQuickmatch;
 
         /// <summary>
         /// The list of tabs in this computer.
@@ -34,9 +46,19 @@ namespace Normal.GorillaTemplate.UI.Computer {
         private TabHeader _tabHeaderPrefab;
 
         /// <summary>
-        /// An event that is dispatched when the user picks a room to connect to.
+        /// An event that is dispatched when the user picks a private room to connect to.
         /// </summary>
         public UnityEvent<string> doConnect => _doConnect;
+
+        /// <summary>
+        /// An event that is dispatched when the user picks a public room to connect to.
+        /// </summary>
+        public UnityEvent<string> doConnectPublic => _doConnectPublic;
+
+        /// <summary>
+        /// An event that is dispatched when the user selects quickmatch.
+        /// </summary>
+        public UnityEvent doQuickmatch => _doQuickmatch;
 
         /// <summary>
         /// The index of the currently displayed tab.
