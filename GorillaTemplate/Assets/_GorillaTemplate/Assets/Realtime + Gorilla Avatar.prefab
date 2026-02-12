@@ -88,6 +88,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a21edb7717b14f8a9bb5575ce4bf5109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  quickmatchGroupName: default
+  quickmatchRoomCapacity: 16
 --- !u!114 &6693574861097370393
 MonoBehaviour:
   m_ObjectHideFlags: 0

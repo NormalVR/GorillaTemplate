@@ -50,15 +50,15 @@ MonoBehaviour:
   _sceneViewUUID: 
   _viewUUID: 
   _sceneViewPreventOwnershipTakeover: 0
-  _sceneViewDestroyWhenOwnerOrLastClientLeaves: 1
-  _sceneViewDestroyWhenOwnerOrLastClientLeavesMigrated: 1
   _sceneViewDestroyWhenLastClientLeaves: 1
   _components:
   - componentID: 1
     component: {fileID: 4344890289317536052}
+    isDeprecated: 0
   _childViews:
   - componentID: 1
     component: {fileID: 0}
+    isDeprecated: 1
 --- !u!114 &4344890289317536052
 MonoBehaviour:
   m_ObjectHideFlags: 0

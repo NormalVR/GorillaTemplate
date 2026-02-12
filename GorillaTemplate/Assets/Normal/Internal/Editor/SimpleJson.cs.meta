@@ -1,5 +1,12 @@
 fileFormatVersion: 2
 guid: cd1f703ef6b5544d483732e8febb44fc
+AssetOrigin:
+  serializedVersion: 1
+  productId: 195224
+  packageName: Normcore - Realtime Multiplayer with Voice Chat for All Platforms
+  packageVersion: 2.1
+  assetPath: Assets/Normal/Internal/Editor/SimpleJson.cs
+  uploadId: 440250
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
@@ -9,10 +16,3 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 195224
-  packageName: Normcore - Realtime Multiplayer with Voice Chat for All Platforms
-  packageVersion: 2.1
-  assetPath: Assets/Normal/Internal/Editor/SimpleJson.cs
-  uploadId: 440250

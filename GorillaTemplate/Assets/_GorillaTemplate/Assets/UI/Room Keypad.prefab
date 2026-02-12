@@ -840,8 +840,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _connecter: {fileID: 0}
-  _nameText: {fileID: 8904930122677393871}
-  _disconnectEventText: {fileID: 0}
+  _prefix: 
+  _nameLabel: {fileID: 0}
+  _disconnectEventLabel: {fileID: 0}
 --- !u!1 &4368445194842002898
 GameObject:
   m_ObjectHideFlags: 0
@@ -968,6 +969,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -989,9 +992,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &4577881483876289779
 BoxCollider:

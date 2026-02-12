@@ -1,11 +1,5 @@
 fileFormatVersion: 2
 guid: 5f9ab76be3bea954b8d2d3d0ae5e3ac2
-NativeFormatImporter:
-  externalObjects: {}
-  mainObjectFileID: 11400000
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
   productId: 195224
@@ -13,3 +7,9 @@ AssetOrigin:
   packageVersion: 2.1
   assetPath: Assets/Normal/Internal/Resources/InternalDirectory.asset
   uploadId: 440250
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

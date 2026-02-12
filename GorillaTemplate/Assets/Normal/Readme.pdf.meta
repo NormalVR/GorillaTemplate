@@ -1,10 +1,5 @@
 fileFormatVersion: 2
 guid: a8e902716a90049c0a3bffdf24818b8a
-DefaultImporter:
-  externalObjects: {}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
   productId: 195224
@@ -12,3 +7,8 @@ AssetOrigin:
   packageVersion: 2.1
   assetPath: Assets/Normal/Readme.pdf
   uploadId: 440250
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

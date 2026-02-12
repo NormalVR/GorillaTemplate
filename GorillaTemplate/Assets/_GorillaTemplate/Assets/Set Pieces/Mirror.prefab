@@ -62,6 +62,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -83,9 +85,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &6350990096113217491
 BoxCollider:
@@ -189,10 +193,12 @@ MonoBehaviour:
   renderScale: 1
   renderSize: {x: 1750, y: 1750}
   antiAliasing: 4
+  filterMode: 1
   farClipPlaneScale: 1
   reflectionMask:
     serializedVersion: 2
     m_Bits: 4294967295
+  renderShadows: 1
   cullUsingFrustum: 0
 --- !u!1 &7666847380433300150
 GameObject:
@@ -263,3 +269,4 @@ MonoBehaviour:
   _mirror: {fileID: 1986941306632189073}
   _inactiveColor: {r: 0.832884, g: 0.832884, b: 0.832884, a: 1}
   _transitionDuration: 0.17
+  _disableUsingLayerMask: 0
