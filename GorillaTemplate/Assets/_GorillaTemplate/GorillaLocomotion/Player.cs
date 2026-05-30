@@ -181,7 +181,7 @@ namespace GorillaLocomotion
 
             if (rigidBodyMovement != Vector3.zero)
             {
-                transform.position = transform.position + rigidBodyMovement;
+                transform.position += rigidBodyMovement;
             }
 
             lastHeadPosition = headCollider.transform.position;
