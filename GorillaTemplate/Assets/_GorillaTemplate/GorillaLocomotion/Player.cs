@@ -107,10 +107,8 @@ namespace GorillaLocomotion
             {
                 return PositionWithOffset(leftHandTransform, leftHandOffset);
             }
-            else
-            {
-                return headCollider.transform.position + (PositionWithOffset(leftHandTransform, leftHandOffset) - headCollider.transform.position).normalized * maxArmLength;
-            }
+
+            return headCollider.transform.position + (PositionWithOffset(leftHandTransform, leftHandOffset) - headCollider.transform.position).normalized * maxArmLength;
         }
 
         private Vector3 CurrentRightHandPosition()
@@ -119,10 +117,8 @@ namespace GorillaLocomotion
             {
                 return PositionWithOffset(rightHandTransform, rightHandOffset);
             }
-            else
-            {
-                return headCollider.transform.position + (PositionWithOffset(rightHandTransform, rightHandOffset) - headCollider.transform.position).normalized * maxArmLength;
-            }
+
+            return headCollider.transform.position + (PositionWithOffset(rightHandTransform, rightHandOffset) - headCollider.transform.position).normalized * maxArmLength;
         }
 
         private Vector3 PositionWithOffset(Transform transformToModify, Vector3 offsetVector)
@@ -163,7 +159,7 @@ namespace GorillaLocomotion
 
             //left hand
 
-            Vector3 distanceTraveled = CurrentLeftHandPosition() - lastLeftHandPosition + Vector3.down * 2f * 9.8f * deltaTime * deltaTime;
+            Vector3 distanceTraveled = CurrentLeftHandPosition() - lastLeftHandPosition + Vector3.down * (2f * 9.8f * deltaTime * deltaTime);
 
             if (IterativeCollisionSphereCast(lastLeftHandPosition, minimumRaycastDistance, distanceTraveled, defaultPrecision, out finalPosition, true, out hitInfo))
             {
@@ -184,7 +180,7 @@ namespace GorillaLocomotion
 
             //right hand
 
-            distanceTraveled = CurrentRightHandPosition() - lastRightHandPosition + Vector3.down * 2f * 9.8f * deltaTime * deltaTime;
+            distanceTraveled = CurrentRightHandPosition() - lastRightHandPosition + Vector3.down * (2f * 9.8f * deltaTime * deltaTime);
 
             if (IterativeCollisionSphereCast(lastRightHandPosition, minimumRaycastDistance, distanceTraveled, defaultPrecision, out finalPosition, true, out hitInfo))
             {
@@ -304,7 +300,7 @@ namespace GorillaLocomotion
             wasRightHandTouching = rightHandColliding;
         }
 
-        private bool IterativeCollisionSphereCast(Vector3 startPosition, float sphereRadius, Vector3 movementVector, float precision, out Vector3 endPosition, bool singleHand, out RaycastHit hitInfo)
+        private bool IterativeCollisionSphereCast(Vector3 startPosition, float sphereRadius, Vector3 movementVector, float precision, out Vector3 endPosition, bool singleHand, out RaycastHit hitInfo, bool frictionless = false)
         {
             Vector3 movementToProjectedAboveCollisionPlane;
             Surface gorillaSurface;
@@ -317,7 +313,9 @@ namespace GorillaLocomotion
                 //take the surface normal that we hit, then along that plane, do a spherecast to a position a small distance away to account for moving perpendicular to that surface
                 Vector3 firstPosition = endPosition;
                 gorillaSurface = hit.collider.GetComponent<Surface>();
-                slipPercentage = gorillaSurface != null ? gorillaSurface.slipPercentage : (!singleHand ? defaultSlideFactor : 0.001f);
+                
+                slipPercentage = frictionless ? 1f : (!gorillaSurface ? gorillaSurface.slipPercentage : (!singleHand ? defaultSlideFactor : 0.001f));
+                
                 movementToProjectedAboveCollisionPlane = Vector3.ProjectOnPlane(startPosition + movementVector - firstPosition, hit.normal) * slipPercentage;
                 if (CollisionsSphereCast(endPosition, sphereRadius, movementToProjectedAboveCollisionPlane, precision * precision, out endPosition, out hit))
                 {
@@ -377,7 +375,6 @@ namespace GorillaLocomotion
                 {
                     finalPosition = startPosition;
                     hitInfo = innerHit;
-                    return true;
                 }
                 return true;
             }
@@ -444,7 +441,7 @@ namespace GorillaLocomotion
             velocityIndex = (velocityIndex + 1) % velocityHistorySize;
             Vector3 oldestVelocity = velocityHistory[velocityIndex];
             currentVelocity = (transform.position - lastPosition) / deltaTime;
-            denormalizedVelocityAverage += (currentVelocity - oldestVelocity) / (float)velocityHistorySize;
+            denormalizedVelocityAverage += (currentVelocity - oldestVelocity) / velocityHistorySize;
             velocityHistory[velocityIndex] = currentVelocity;
             lastPosition = transform.position;
         }
