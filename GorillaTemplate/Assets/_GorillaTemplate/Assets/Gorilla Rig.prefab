@@ -1085,13 +1085,13 @@ MonoBehaviour:
   leftHandTransform: {fileID: 7627177701095502813}
   velocityHistorySize: 8
   maxArmLength: 1.5
-  unStickDistance: 1
+  unStickDistance: 0.3
   velocityLimit: 0.4
   maxJumpSpeed: 6.5
   jumpMultiplier: 1.1
   minimumRaycastDistance: 0.035
   defaultSlideFactor: 0.03
-  defaultPrecision: 0.995
+  defaultPrecision: 0.998
   rightHandOffset: {x: 0, y: 0, z: 0}
   leftHandOffset: {x: 0, y: 0, z: 0}
   headOffset: {x: 0, y: -0.1, z: -0.1}
