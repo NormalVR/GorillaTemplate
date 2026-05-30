@@ -62,7 +62,6 @@ namespace GorillaLocomotion
         private int velocityIndex;
         private Vector3 currentVelocity;
         private Vector3 denormalizedVelocityAverage;
-        private bool jumpHandIsLeft;
         private Vector3 lastPosition;
 
         public Vector3 rightHandOffset;
@@ -77,7 +76,7 @@ namespace GorillaLocomotion
         public RaycastHit leftHandHitInfo;
         public RaycastHit rightHandHitInfo;
 
-        public bool disableMovement = false;
+        public bool disableMovement;
 
         private void Awake()
         {
