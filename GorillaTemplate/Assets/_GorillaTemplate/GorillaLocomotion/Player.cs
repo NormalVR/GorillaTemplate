@@ -143,12 +143,11 @@ namespace GorillaLocomotion
             Vector3 rigidBodyMovement = Vector3.zero;
             Vector3 firstIterationLeftHand = Vector3.zero;
             Vector3 firstIterationRightHand = Vector3.zero;
+            Vector3 gravityOffset = Vector3.up * (2f * Physics.gravity.y * deltaTime * deltaTime);
             RaycastHit hitInfo;
 
             bodyCollider.transform.eulerAngles = new Vector3(0, headCollider.transform.eulerAngles.y, 0);
             bodyCollider.transform.position = PositionWithOffset(headCollider.transform, headOffset) + Vector3.down * (0.5f * bodyCollider.height);
-
-            Vector3 gravityOffset = Vector3.up * (2f * Physics.gravity.y * deltaTime * deltaTime);
             
             //left hand
 
