@@ -101,24 +101,15 @@ namespace GorillaLocomotion
             lastPosition = transform.position;
         }
 
-        private Vector3 CurrentLeftHandPosition()
+        private Vector3 CurrentHandPosition(bool leftHand)
         {
-            if ((PositionWithOffset(leftHandTransform, leftHandOffset) - headCollider.transform.position).magnitude < maxArmLength)
-            {
-                return PositionWithOffset(leftHandTransform, leftHandOffset);
-            }
+            Transform handTransform = leftHand ? leftHandTransform : rightHandTransform;
+            Vector3 handOffset = leftHand ? leftHandOffset : rightHandOffset;
 
-            return headCollider.transform.position + (PositionWithOffset(leftHandTransform, leftHandOffset) - headCollider.transform.position).normalized * maxArmLength;
-        }
+            if ((PositionWithOffset(handTransform, handOffset) - headCollider.transform.position).magnitude < maxArmLength)
+                return PositionWithOffset(handTransform, handOffset);
 
-        private Vector3 CurrentRightHandPosition()
-        {
-            if ((PositionWithOffset(rightHandTransform, rightHandOffset) - headCollider.transform.position).magnitude < maxArmLength)
-            {
-                return PositionWithOffset(rightHandTransform, rightHandOffset);
-            }
-
-            return headCollider.transform.position + (PositionWithOffset(rightHandTransform, rightHandOffset) - headCollider.transform.position).normalized * maxArmLength;
+            return headCollider.transform.position + (PositionWithOffset(handTransform, handOffset) - headCollider.transform.position).normalized * maxArmLength;
         }
 
         private Vector3 PositionWithOffset(Transform transformToModify, Vector3 offsetVector)
@@ -131,6 +122,7 @@ namespace GorillaLocomotion
 
         private int _frameCount;
 
+        
         private void Update()
         {
             // Wait for XR tracking mode to be applied
@@ -138,8 +130,8 @@ namespace GorillaLocomotion
             {
                 _frameCount++;
 
-                lastLeftHandPosition = CurrentLeftHandPosition();
-                lastRightHandPosition = CurrentRightHandPosition();
+                lastLeftHandPosition = CurrentHandPosition(true);
+                lastRightHandPosition = CurrentHandPosition(false);
                 lastHeadPosition = headCollider.transform.position;
                 lastPosition = transform.position;
 
@@ -157,20 +149,22 @@ namespace GorillaLocomotion
             bodyCollider.transform.eulerAngles = new Vector3(0, headCollider.transform.eulerAngles.y, 0);
             bodyCollider.transform.position = PositionWithOffset(headCollider.transform, headOffset) + Vector3.down * (0.5f * bodyCollider.height);
 
+            Vector3 gravityOffset = Vector3.up * (2f * Physics.gravity.y * deltaTime * deltaTime);
+            
             //left hand
 
-            Vector3 distanceTraveled = CurrentLeftHandPosition() - lastLeftHandPosition + Vector3.down * (2f * 9.8f * deltaTime * deltaTime);
+            Vector3 distanceTraveled = CurrentHandPosition(true) - lastLeftHandPosition + gravityOffset;
 
             if (IterativeCollisionSphereCast(lastLeftHandPosition, minimumRaycastDistance, distanceTraveled, defaultPrecision, out finalPosition, true, out hitInfo))
             {
                 //this lets you stick to the position you touch, as long as you keep touching the surface this will be the zero point for that hand
                 if (wasLeftHandTouching)
                 {
-                    firstIterationLeftHand = lastLeftHandPosition - CurrentLeftHandPosition();
+                    firstIterationLeftHand = lastLeftHandPosition - CurrentHandPosition(true);
                 }
                 else
                 {
-                    firstIterationLeftHand = finalPosition - CurrentLeftHandPosition();
+                    firstIterationLeftHand = finalPosition - CurrentHandPosition(true);
                 }
                 playerRigidBody.SetLinearVelocity(Vector3.zero);
 
@@ -180,17 +174,17 @@ namespace GorillaLocomotion
 
             //right hand
 
-            distanceTraveled = CurrentRightHandPosition() - lastRightHandPosition + Vector3.down * (2f * 9.8f * deltaTime * deltaTime);
+            distanceTraveled = CurrentHandPosition(false) - lastRightHandPosition + gravityOffset;
 
             if (IterativeCollisionSphereCast(lastRightHandPosition, minimumRaycastDistance, distanceTraveled, defaultPrecision, out finalPosition, true, out hitInfo))
             {
                 if (wasRightHandTouching)
                 {
-                    firstIterationRightHand = lastRightHandPosition - CurrentRightHandPosition();
+                    firstIterationRightHand = lastRightHandPosition - CurrentHandPosition(false);
                 }
                 else
                 {
-                    firstIterationRightHand = finalPosition - CurrentRightHandPosition();
+                    firstIterationRightHand = finalPosition - CurrentHandPosition(false);
                 }
 
                 playerRigidBody.SetLinearVelocity(Vector3.zero);
@@ -232,7 +226,7 @@ namespace GorillaLocomotion
 
             //do final left hand position
 
-            distanceTraveled = CurrentLeftHandPosition() - lastLeftHandPosition;
+            distanceTraveled = CurrentHandPosition(true) - lastLeftHandPosition;
 
             if (IterativeCollisionSphereCast(lastLeftHandPosition, minimumRaycastDistance, distanceTraveled, defaultPrecision, out finalPosition, !((leftHandColliding || wasLeftHandTouching) && (rightHandColliding || wasRightHandTouching)), out hitInfo))
             {
@@ -242,12 +236,12 @@ namespace GorillaLocomotion
             }
             else
             {
-                lastLeftHandPosition = CurrentLeftHandPosition();
+                lastLeftHandPosition = CurrentHandPosition(true);
             }
 
             //do final right hand position
 
-            distanceTraveled = CurrentRightHandPosition() - lastRightHandPosition;
+            distanceTraveled = CurrentHandPosition(false) - lastRightHandPosition;
 
             if (IterativeCollisionSphereCast(lastRightHandPosition, minimumRaycastDistance, distanceTraveled, defaultPrecision, out finalPosition, !((leftHandColliding || wasLeftHandTouching) && (rightHandColliding || wasRightHandTouching)), out hitInfo))
             {
@@ -257,7 +251,7 @@ namespace GorillaLocomotion
             }
             else
             {
-                lastRightHandPosition = CurrentRightHandPosition();
+                lastRightHandPosition = CurrentHandPosition(false);
             }
 
             StoreVelocities();
@@ -279,17 +273,17 @@ namespace GorillaLocomotion
 
             //check to see if left hand is stuck and we should unstick it
 
-            if (leftHandColliding && (CurrentLeftHandPosition() - lastLeftHandPosition).magnitude > unStickDistance && !Physics.SphereCast(headCollider.transform.position, minimumRaycastDistance * defaultPrecision, CurrentLeftHandPosition() - headCollider.transform.position, out hitInfo, (CurrentLeftHandPosition() - headCollider.transform.position).magnitude - minimumRaycastDistance, locomotionEnabledLayers.value, QueryTriggerInteraction.Ignore))
+            if (leftHandColliding && (CurrentHandPosition(true) - lastLeftHandPosition).magnitude > unStickDistance && !Physics.SphereCast(headCollider.transform.position, minimumRaycastDistance * defaultPrecision, CurrentHandPosition(true) - headCollider.transform.position, out hitInfo, (CurrentHandPosition(true) - headCollider.transform.position).magnitude - minimumRaycastDistance, locomotionEnabledLayers.value, QueryTriggerInteraction.Ignore))
             {
-                lastLeftHandPosition = CurrentLeftHandPosition();
+                lastLeftHandPosition = CurrentHandPosition(true);
                 leftHandColliding = false;
             }
 
             //check to see if right hand is stuck and we should unstick it
 
-            if (rightHandColliding && (CurrentRightHandPosition() - lastRightHandPosition).magnitude > unStickDistance && !Physics.SphereCast(headCollider.transform.position, minimumRaycastDistance * defaultPrecision, CurrentRightHandPosition() - headCollider.transform.position, out hitInfo, (CurrentRightHandPosition() - headCollider.transform.position).magnitude - minimumRaycastDistance, locomotionEnabledLayers.value, QueryTriggerInteraction.Ignore))
+            if (rightHandColliding && (CurrentHandPosition(false) - lastRightHandPosition).magnitude > unStickDistance && !Physics.SphereCast(headCollider.transform.position, minimumRaycastDistance * defaultPrecision, CurrentHandPosition(false) - headCollider.transform.position, out hitInfo, (CurrentHandPosition(false) - headCollider.transform.position).magnitude - minimumRaycastDistance, locomotionEnabledLayers.value, QueryTriggerInteraction.Ignore))
             {
-                lastRightHandPosition = CurrentRightHandPosition();
+                lastRightHandPosition = CurrentHandPosition(false);
                 rightHandColliding = false;
             }
 
@@ -299,7 +293,7 @@ namespace GorillaLocomotion
             wasLeftHandTouching = leftHandColliding;
             wasRightHandTouching = rightHandColliding;
         }
-
+        
         private bool IterativeCollisionSphereCast(Vector3 startPosition, float sphereRadius, Vector3 movementVector, float precision, out Vector3 endPosition, bool singleHand, out RaycastHit hitInfo, bool frictionless = false)
         {
             Vector3 movementToProjectedAboveCollisionPlane;
