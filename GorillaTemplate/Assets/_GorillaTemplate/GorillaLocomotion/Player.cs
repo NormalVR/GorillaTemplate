@@ -145,18 +145,17 @@ namespace GorillaLocomotion
             Vector3 firstIterationLeftHand = Vector3.zero;
             Vector3 firstIterationRightHand = Vector3.zero;
             Vector3 gravityOffset = Vector3.up * (2f * Physics.gravity.y * deltaTime * deltaTime);
-            RaycastHit hitInfo;
 
             bodyCollider.transform.eulerAngles = new Vector3(0, headCollider.transform.eulerAngles.y, 0);
             bodyCollider.transform.position = PositionWithOffset(headCollider.transform, headOffset) + Vector3.down * (0.5f * bodyCollider.height);
             
             //left hand
             Vector3 distanceTraveled = CurrentHandPosition(true) - lastLeftHandPosition + gravityOffset;
-            leftHandColliding = FirstHandIteration(true, distanceTraveled, out finalPosition, out hitInfo, ref firstIterationLeftHand);
+            leftHandColliding = FirstHandIteration(true, distanceTraveled, out finalPosition, out _, ref firstIterationLeftHand);
 
             //right hand
             distanceTraveled = CurrentHandPosition(false) - lastRightHandPosition + gravityOffset;
-            rightHandColliding = FirstHandIteration(false, distanceTraveled, out finalPosition, out hitInfo, ref firstIterationRightHand);
+            rightHandColliding = FirstHandIteration(false, distanceTraveled, out finalPosition, out _, ref firstIterationRightHand);
 
             //average or add
             if ((leftHandColliding || wasLeftHandTouching) && (rightHandColliding || wasRightHandTouching))
@@ -170,11 +169,11 @@ namespace GorillaLocomotion
             }
 
             //check valid head movement
-            if (IterativeCollisionSphereCast(lastHeadPosition, headCollider.radius, headCollider.transform.position + rigidBodyMovement - lastHeadPosition, defaultPrecision, out finalPosition, false, out hitInfo, true))
+            if (IterativeCollisionSphereCast(lastHeadPosition, headCollider.radius, headCollider.transform.position + rigidBodyMovement - lastHeadPosition, defaultPrecision, out finalPosition, false, out _, true))
             {
                 rigidBodyMovement = finalPosition - lastHeadPosition;
                 //last check to make sure the head won't phase through geometry
-                if (Physics.Raycast(lastHeadPosition, headCollider.transform.position - lastHeadPosition + rigidBodyMovement, out hitInfo, (headCollider.transform.position - lastHeadPosition + rigidBodyMovement).magnitude + headCollider.radius * defaultPrecision * 0.999f, locomotionEnabledLayers.value, QueryTriggerInteraction.Ignore))
+                if (Physics.Raycast(lastHeadPosition, headCollider.transform.position - lastHeadPosition + rigidBodyMovement, out _, (headCollider.transform.position - lastHeadPosition + rigidBodyMovement).magnitude + headCollider.radius * defaultPrecision * 0.999f, locomotionEnabledLayers.value, QueryTriggerInteraction.Ignore))
                 {
                     rigidBodyMovement = lastHeadPosition - headCollider.transform.position;
                 }
@@ -189,11 +188,11 @@ namespace GorillaLocomotion
 
             //do final left hand position
             distanceTraveled = CurrentHandPosition(true) - lastLeftHandPosition;
-            FinalHandIteration(true, distanceTraveled, out finalPosition, out hitInfo);
+            FinalHandIteration(true, distanceTraveled, out finalPosition, out _);
 
             //do final right hand position
             distanceTraveled = CurrentHandPosition(false) - lastRightHandPosition;
-            FinalHandIteration(false, distanceTraveled, out finalPosition, out hitInfo);
+            FinalHandIteration(false, distanceTraveled, out finalPosition, out _);
 
             StoreVelocities();
 
