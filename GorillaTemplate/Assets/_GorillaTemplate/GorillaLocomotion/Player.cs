@@ -150,49 +150,14 @@ namespace GorillaLocomotion
             bodyCollider.transform.position = PositionWithOffset(headCollider.transform, headOffset) + Vector3.down * (0.5f * bodyCollider.height);
             
             //left hand
-
             Vector3 distanceTraveled = CurrentHandPosition(true) - lastLeftHandPosition + gravityOffset;
-
-            if (IterativeCollisionSphereCast(lastLeftHandPosition, minimumRaycastDistance, distanceTraveled, defaultPrecision, out finalPosition, true, out hitInfo))
-            {
-                //this lets you stick to the position you touch, as long as you keep touching the surface this will be the zero point for that hand
-                if (wasLeftHandTouching)
-                {
-                    firstIterationLeftHand = lastLeftHandPosition - CurrentHandPosition(true);
-                }
-                else
-                {
-                    firstIterationLeftHand = finalPosition - CurrentHandPosition(true);
-                }
-                playerRigidBody.SetLinearVelocity(Vector3.zero);
-
-                leftHandColliding = true;
-                leftHandHitInfo = hitInfo;
-            }
+            leftHandColliding = FirstHandIteration(true, distanceTraveled, out finalPosition, out hitInfo, ref firstIterationLeftHand);
 
             //right hand
-
             distanceTraveled = CurrentHandPosition(false) - lastRightHandPosition + gravityOffset;
-
-            if (IterativeCollisionSphereCast(lastRightHandPosition, minimumRaycastDistance, distanceTraveled, defaultPrecision, out finalPosition, true, out hitInfo))
-            {
-                if (wasRightHandTouching)
-                {
-                    firstIterationRightHand = lastRightHandPosition - CurrentHandPosition(false);
-                }
-                else
-                {
-                    firstIterationRightHand = finalPosition - CurrentHandPosition(false);
-                }
-
-                playerRigidBody.SetLinearVelocity(Vector3.zero);
-
-                rightHandColliding = true;
-                rightHandHitInfo = hitInfo;
-            }
+            rightHandColliding = FirstHandIteration(false, distanceTraveled, out finalPosition, out hitInfo, ref firstIterationRightHand);
 
             //average or add
-
             if ((leftHandColliding || wasLeftHandTouching) && (rightHandColliding || wasRightHandTouching))
             {
                 //this lets you grab stuff with both hands at the same time
@@ -204,7 +169,6 @@ namespace GorillaLocomotion
             }
 
             //check valid head movement
-
             if (IterativeCollisionSphereCast(lastHeadPosition, headCollider.radius, headCollider.transform.position + rigidBodyMovement - lastHeadPosition, defaultPrecision, out finalPosition, false, out hitInfo, true))
             {
                 rigidBodyMovement = finalPosition - lastHeadPosition;
@@ -290,6 +254,33 @@ namespace GorillaLocomotion
 
             wasLeftHandTouching = leftHandColliding;
             wasRightHandTouching = rightHandColliding;
+        }
+        
+        private bool FirstHandIteration(bool leftHand, Vector3 distanceTraveled, out Vector3 finalPosition, out RaycastHit hitInfo, ref Vector3 firstIteration)
+        {
+            bool handTouching = leftHand ? wasLeftHandTouching : wasRightHandTouching;
+            Vector3 lastHandPosition = leftHand ? lastLeftHandPosition : lastRightHandPosition;
+            
+            if (IterativeCollisionSphereCast(lastHandPosition, minimumRaycastDistance, distanceTraveled, defaultPrecision, out finalPosition, true, out hitInfo))
+            {
+                // This lets you stick to the position you touch, as long as you keep touching the surface this will be the pivot for that hand
+                if (handTouching)
+                {
+                    firstIteration = lastHandPosition - CurrentHandPosition(leftHand);
+                }
+                else
+                {
+                    firstIteration = finalPosition - CurrentHandPosition(leftHand);
+                }
+                playerRigidBody.SetLinearVelocity(Vector3.zero);
+                
+                if (leftHand) leftHandHitInfo = hitInfo;
+                else rightHandHitInfo = hitInfo;
+                
+                return true;
+            }
+
+            return false;
         }
         
         private bool IterativeCollisionSphereCast(Vector3 startPosition, float sphereRadius, Vector3 movementVector, float precision, out Vector3 endPosition, bool singleHand, out RaycastHit hitInfo, bool frictionless = false)
