@@ -70,6 +70,9 @@ namespace GorillaLocomotion
 
         public LayerMask locomotionEnabledLayers;
 
+        private bool leftHandColliding;
+        private bool rightHandColliding;
+        
         public bool wasLeftHandTouching;
         public bool wasRightHandTouching;
 
@@ -136,9 +139,7 @@ namespace GorillaLocomotion
 
                 return;
             }
-
-            bool leftHandColliding = false;
-            bool rightHandColliding = false;
+            
             Vector3 finalPosition;
             Vector3 rigidBodyMovement = Vector3.zero;
             Vector3 firstIterationLeftHand = Vector3.zero;
@@ -187,34 +188,12 @@ namespace GorillaLocomotion
             lastHeadPosition = headCollider.transform.position;
 
             //do final left hand position
-
             distanceTraveled = CurrentHandPosition(true) - lastLeftHandPosition;
-
-            if (IterativeCollisionSphereCast(lastLeftHandPosition, minimumRaycastDistance, distanceTraveled, defaultPrecision, out finalPosition, !((leftHandColliding || wasLeftHandTouching) && (rightHandColliding || wasRightHandTouching)), out hitInfo))
-            {
-                lastLeftHandPosition = finalPosition;
-                leftHandColliding = true;
-                leftHandHitInfo = hitInfo;
-            }
-            else
-            {
-                lastLeftHandPosition = CurrentHandPosition(true);
-            }
+            FinalHandIteration(true, distanceTraveled, out finalPosition, out hitInfo);
 
             //do final right hand position
-
             distanceTraveled = CurrentHandPosition(false) - lastRightHandPosition;
-
-            if (IterativeCollisionSphereCast(lastRightHandPosition, minimumRaycastDistance, distanceTraveled, defaultPrecision, out finalPosition, !((leftHandColliding || wasLeftHandTouching) && (rightHandColliding || wasRightHandTouching)), out hitInfo))
-            {
-                lastRightHandPosition = finalPosition;
-                rightHandColliding = true;
-                rightHandHitInfo = hitInfo;
-            }
-            else
-            {
-                lastRightHandPosition = CurrentHandPosition(false);
-            }
+            FinalHandIteration(false, distanceTraveled, out finalPosition, out hitInfo);
 
             StoreVelocities();
 
@@ -283,6 +262,34 @@ namespace GorillaLocomotion
             return false;
         }
         
+        private void FinalHandIteration(bool leftHand, Vector3 distanceTraveled, out Vector3 finalPosition, out RaycastHit hitInfo)
+        {
+            Vector3 lastHandPosition = leftHand ? lastLeftHandPosition : lastRightHandPosition;
+            bool singleHand = !((leftHandColliding || wasLeftHandTouching) && (rightHandColliding || wasRightHandTouching));
+            
+            if (IterativeCollisionSphereCast(lastHandPosition, minimumRaycastDistance, distanceTraveled, defaultPrecision, out finalPosition, singleHand, out hitInfo))
+            {
+                if (leftHand)
+                {
+                    lastLeftHandPosition = finalPosition;
+                    leftHandHitInfo = hitInfo;
+                    leftHandColliding = true;
+                }
+                
+                else
+                {
+                    lastRightHandPosition = finalPosition;
+                    rightHandHitInfo = hitInfo;
+                    rightHandColliding = true;
+                }
+
+                return;
+            }
+
+            if (leftHand) lastLeftHandPosition = CurrentHandPosition(true);
+            else lastRightHandPosition = CurrentHandPosition(false);
+        }
+        
         private bool IterativeCollisionSphereCast(Vector3 startPosition, float sphereRadius, Vector3 movementVector, float precision, out Vector3 endPosition, bool singleHand, out RaycastHit hitInfo, bool frictionless = false)
         {
             Vector3 movementToProjectedAboveCollisionPlane;
@@ -307,32 +314,30 @@ namespace GorillaLocomotion
                     return true;
                 }
                 //if not, try to move closer towards the true point to account for the fact that the movement along the normal of the hit could have moved you away from the surface
-                else if (CollisionsSphereCast(movementToProjectedAboveCollisionPlane + firstPosition, sphereRadius, startPosition + movementVector - (movementToProjectedAboveCollisionPlane + firstPosition), precision * precision * precision, out endPosition, out hit))
+
+                if (CollisionsSphereCast(movementToProjectedAboveCollisionPlane + firstPosition, sphereRadius, startPosition + movementVector - (movementToProjectedAboveCollisionPlane + firstPosition), precision * precision * precision, out endPosition, out hit))
                 {
                     //if we hit, then return the spot we hit
                     hitInfo = hit;
                     return true;
                 }
-                else
-                {
-                    //this shouldn't really happe, since this means that the sliding motion got you around some corner or something and let you get to your final point. back off because something strange happened, so just don't do the slide
-                    endPosition = firstPosition;
-                    hitInfo = hit;
-                    return true;
-                }
+
+                //this shouldn't really happe, since this means that the sliding motion got you around some corner or something and let you get to your final point. back off because something strange happened, so just don't do the slide
+                endPosition = firstPosition;
+                hitInfo = hit;
+                return true;
             }
             //as kind of a sanity check, try a smaller spherecast. this accounts for times when the original spherecast was already touching a surface so it didn't trigger correctly
-            else if (CollisionsSphereCast(startPosition, sphereRadius * precision * 0.66f, movementVector.normalized * (movementVector.magnitude + sphereRadius * precision * 0.34f), precision * 0.66f, out endPosition, out hit))
+
+            if (CollisionsSphereCast(startPosition, sphereRadius * precision * 0.66f, movementVector.normalized * (movementVector.magnitude + sphereRadius * precision * 0.34f), precision * 0.66f, out endPosition, out hit))
             {
                 endPosition = startPosition;
                 hitInfo = hit;
                 return true;
-            } else
-            {
-                endPosition = Vector3.zero;
-                hitInfo = default;
-                return false;
             }
+            endPosition = Vector3.zero;
+            hitInfo = default;
+            return false;
         }
 
         private bool CollisionsSphereCast(Vector3 startPosition, float sphereRadius, Vector3 movementVector, float precision, out Vector3 finalPosition, out RaycastHit hitInfo)
@@ -362,28 +367,15 @@ namespace GorillaLocomotion
                 return true;
             }
             //anti-clipping through geometry check
-            else if (Physics.Raycast(startPosition, movementVector, out hitInfo, movementVector.magnitude + sphereRadius * precision * 0.999f, locomotionEnabledLayers.value, QueryTriggerInteraction.Ignore))
+
+            if (Physics.Raycast(startPosition, movementVector, out hitInfo, movementVector.magnitude + sphereRadius * precision * 0.999f, locomotionEnabledLayers.value, QueryTriggerInteraction.Ignore))
             {
                 finalPosition = startPosition;
                 return true;
             }
-            else
-            {
-                finalPosition = Vector3.zero;
-                return false;
-            }
-        }
 
-        public bool IsHandTouching(bool forLeftHand)
-        {
-            if (forLeftHand)
-            {
-                return wasLeftHandTouching;
-            }
-            else
-            {
-                return wasRightHandTouching;
-            }
+            finalPosition = Vector3.zero;
+            return false;
         }
 
         // Like Transform.RotateAround but for a point instead of a Transform
