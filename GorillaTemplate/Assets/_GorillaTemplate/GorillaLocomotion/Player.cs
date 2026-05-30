@@ -30,9 +30,7 @@ namespace GorillaLocomotion
 
     public class Player : MonoBehaviour
     {
-        private static Player _instance;
-
-        public static Player Instance { get { return _instance; } }
+        public static Player Instance { get; private set;  }
 
         public SphereCollider headCollider;
         public CapsuleCollider bodyCollider;
@@ -83,15 +81,13 @@ namespace GorillaLocomotion
 
         private void Awake()
         {
-            if (_instance != null && _instance != this)
+            if (Instance == null)
             {
-                Destroy(gameObject);
+                Instance = this;
+                InitializeValues();
             }
-            else
-            {
-                _instance = this;
-            }
-            InitializeValues();
+
+            else Destroy(gameObject);
         }
 
         public void InitializeValues()
