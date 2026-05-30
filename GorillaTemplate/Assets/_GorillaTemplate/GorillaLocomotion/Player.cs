@@ -212,22 +212,6 @@ namespace GorillaLocomotion
                 }
             }
 
-            //check to see if left hand is stuck and we should unstick it
-
-            if (leftHandColliding && (CurrentHandPosition(true) - lastLeftHandPosition).magnitude > unStickDistance && !Physics.SphereCast(headCollider.transform.position, minimumRaycastDistance * defaultPrecision, CurrentHandPosition(true) - headCollider.transform.position, out hitInfo, (CurrentHandPosition(true) - headCollider.transform.position).magnitude - minimumRaycastDistance, locomotionEnabledLayers.value, QueryTriggerInteraction.Ignore))
-            {
-                lastLeftHandPosition = CurrentHandPosition(true);
-                leftHandColliding = false;
-            }
-
-            //check to see if right hand is stuck and we should unstick it
-
-            if (rightHandColliding && (CurrentHandPosition(false) - lastRightHandPosition).magnitude > unStickDistance && !Physics.SphereCast(headCollider.transform.position, minimumRaycastDistance * defaultPrecision, CurrentHandPosition(false) - headCollider.transform.position, out hitInfo, (CurrentHandPosition(false) - headCollider.transform.position).magnitude - minimumRaycastDistance, locomotionEnabledLayers.value, QueryTriggerInteraction.Ignore))
-            {
-                lastRightHandPosition = CurrentHandPosition(false);
-                rightHandColliding = false;
-            }
-
             leftHandFollower.position = lastLeftHandPosition;
             rightHandFollower.position = lastRightHandPosition;
 
@@ -264,6 +248,7 @@ namespace GorillaLocomotion
         
         private void FinalHandIteration(bool leftHand, Vector3 distanceTraveled, out Vector3 finalPosition, out RaycastHit hitInfo)
         {
+            bool handColliding = leftHand ? leftHandColliding : rightHandColliding;
             Vector3 lastHandPosition = leftHand ? lastLeftHandPosition : lastRightHandPosition;
             bool singleHand = !((leftHandColliding || wasLeftHandTouching) && (rightHandColliding || wasRightHandTouching));
             
@@ -282,12 +267,20 @@ namespace GorillaLocomotion
                     rightHandHitInfo = hitInfo;
                     rightHandColliding = true;
                 }
-
-                return;
             }
 
-            if (leftHand) lastLeftHandPosition = CurrentHandPosition(true);
-            else lastRightHandPosition = CurrentHandPosition(false);
+            else
+            {
+                if (leftHand) lastLeftHandPosition = CurrentHandPosition(true);
+                else lastRightHandPosition = CurrentHandPosition(false);
+            }
+            
+            // Check to see if the hand is stuck and we should unstick it
+            if (handColliding && (CurrentHandPosition(leftHand) - lastHandPosition).magnitude > unStickDistance && !Physics.SphereCast(headCollider.transform.position, minimumRaycastDistance * defaultPrecision, CurrentHandPosition(leftHand) - headCollider.transform.position, out hitInfo, (CurrentHandPosition(leftHand) - headCollider.transform.position).magnitude - minimumRaycastDistance, locomotionEnabledLayers.value, QueryTriggerInteraction.Ignore))
+            {
+                lastLeftHandPosition = CurrentHandPosition(true);
+                leftHandColliding = false;
+            }
         }
         
         private bool IterativeCollisionSphereCast(Vector3 startPosition, float sphereRadius, Vector3 movementVector, float precision, out Vector3 endPosition, bool singleHand, out RaycastHit hitInfo, bool frictionless = false)
