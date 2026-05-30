@@ -213,7 +213,7 @@ namespace GorillaLocomotion
 
             //check valid head movement
 
-            if (IterativeCollisionSphereCast(lastHeadPosition, headCollider.radius, headCollider.transform.position + rigidBodyMovement - lastHeadPosition, defaultPrecision, out finalPosition, false, out hitInfo))
+            if (IterativeCollisionSphereCast(lastHeadPosition, headCollider.radius, headCollider.transform.position + rigidBodyMovement - lastHeadPosition, defaultPrecision, out finalPosition, false, out hitInfo, true))
             {
                 rigidBodyMovement = finalPosition - lastHeadPosition;
                 //last check to make sure the head won't phase through geometry
@@ -314,7 +314,7 @@ namespace GorillaLocomotion
                 Vector3 firstPosition = endPosition;
                 gorillaSurface = hit.collider.GetComponent<Surface>();
                 
-                slipPercentage = frictionless ? 1f : (!gorillaSurface ? gorillaSurface.slipPercentage : (!singleHand ? defaultSlideFactor : 0.001f));
+                slipPercentage = frictionless ? 1f : (gorillaSurface != null ? gorillaSurface.slipPercentage : (!singleHand ? defaultSlideFactor : 0.001f));
                 
                 movementToProjectedAboveCollisionPlane = Vector3.ProjectOnPlane(startPosition + movementVector - firstPosition, hit.normal) * slipPercentage;
                 if (CollisionsSphereCast(endPosition, sphereRadius, movementToProjectedAboveCollisionPlane, precision * precision, out endPosition, out hit))
